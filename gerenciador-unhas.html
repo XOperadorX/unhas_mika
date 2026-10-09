@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Gerenciador Unhas Mikaela</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        :root { --rosa: #e91e63; --escuro: #2d2d2d; --claro: #f8f8f8; --verde: #4caf50; --vermelho: #f44336; --azul: #2196f3; }
+        body { background: #fef5f9; min-height: 100vh; padding-bottom: 80px; }
+        
+        /* Cabeçalho */
+        .cabecalho { background: linear-gradient(135deg, var(--rosa), #ad1457); color: white; padding: 16px; text-align: center; font-size: 18px; font-weight: bold; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+        
+        /* Navegação */
+        .nav { position: fixed; bottom: 0; left: 0; right: 0; background: white; display: flex; justify-content: space-around; padding: 8px 0; box-shadow: 0 -2px 10px rgba(0,0,0,0.1); z-index: 100; }
+        .nav-btn { display: flex; flex-direction: column; align-items: center; border: none; background: none; color: #666; font-size: 11px; padding: 6px; cursor: pointer; }
+        .nav-btn.ativo { color: var(--rosa); font-weight: bold; }
+        .nav-btn span { font-size: 22px; margin-bottom: 2px; }
+        
+        /* Seções */
+        .secao { display: none; padding: 16px; }
+        .secao.ativa { display: block; animation: aparece 0.3s ease; }
+        @keyframes aparece { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+        
+        /* Formulários e Cards */
+        .card { background: white; border-radius: 12px; padding: 16px; margin-bottom: 14px; box-shadow: 0 2px 6px rgba(0,0,0,0.06); }
+        h2 { color: var(--escuro); font-size: 18px; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+        input, select, textarea { width: 100%; padding: 12px; margin: 6px 0 12px 0; border: 1px solid #ddd; border-radius: 8px; font-size: 15px; background: #fafafa; }
+        input:focus, select:focus { outline: none; border-color: var(--rosa); background: white; }
+        .btn { padding: 12px 18px; border: none; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; transition: 0.2s; }
+        .btn-primario { background: var(--rosa); color: white; width: 100%; }
+        .btn-primario:hover { background: #c2185b; }
+        .btn-sucesso { background: var(--verde); color: white; }
+        .btn-perigo { background: var(--vermelho); color: white; }
+        .btn-azul { background: var(--azul); color: white; }
+        .btn-menor { padding: 8px 12px; font-size: 13px; }
+        .linha { display: flex; gap: 10px; flex-wrap: wrap; }
+        .linha button { flex: 1; min-width: 100px; }
+        
+        /* Lista de Itens */
+        .item-lista { padding: 12px; border-bottom: 1px solid #f0f0f0; display: flex; justify-content: space-between; align-items: center; }
+        .item-lista:last-child { border-bottom: none; }
+        .item-info h4 { font-size: 15px; color: var(--escuro); }
+        .item-info p { font-size: 13px; color: #777; margin-top: 2px; }
+        .item-acoes { display: flex; gap: 6px; }
+        
+        /* Caixa */
+        .caixa-status { text-align: center; padding: 16px; border-radius: 10px; margin-bottom: 16px; font-size: 17px; font-weight: bold; }
+        .caixa-aberto { background: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; }
+        .caixa-fechado { background: #fce4ec; color: #c62828; border: 1px solid #f8bbd0; }
+        .valor-grande { font-size: 26px; font-weight: bold; color: var(--rosa); margin: 8px 0; }
+        
+        /* Alertas */
+        .alerta-estoque { background: #fff3e0; border-left: 4px solid #ff9800; padding: 10px; margin: 8px 0; border-radius: 4px; font-size: 14px; }
+        .vazio { text-align: center; padding: 30px; color: #999; font-size: 15px; }
+        .divisor { height: 1px; background: #eee; margin: 14px 0; }
+    </style>
+</head>
+<body>
+
+<div class="cabecalho">💅 Gerenciador — Unhas Mikaela</div>
+
+<!-- 📱 SEÇÃO: CAIXA -->
+<section id="secao-caixa" class="secao ativa">
+    <div class="card">
+        <h2>💰 Controle de Caixa</h2>
+        <div id="caixaStatus" class="caixa-status caixa-fechado">Caixa Fechado</div>
+        <div id="caixaConteudo" style="display: none;">
+            <p>Saldo Inicial:</p>
+            <div class="valor-grande" id="saldoInicial">R$ 0,00</div>
+            <p>Entradas: <span style="color: var(--verde); font-weight:bold" id="totalEntradas">R$ 0,00</span></p>
+            <p>Saídas: <span style="color: var(--vermelho); font-weight:bold" id="totalSaidas">R$ 0,00</span></p>
+            <p style="font-size: 18px; margin-top: 10px;">Saldo Atual:</p>
+            <div class="valor-grande" id="saldoAtual">R$ 0,00</div>
+            
+            <div class="divisor"></div>
+            
+            <h3 style="font-size:15px; margin-bottom:8px;">Nova Movimentação</h3>
+            <input type="text" id="movDescricao" placeholder="Descrição">
+            <input type="number" step="0.01" id="movValor" placeholder="Valor R$">
+            <div class="linha">
+                <button class="btn btn-sucesso" onclick="registrarMovimentacao('entrada')">⬆️ Entrada</button>
+                <button class="btn btn-perigo" onclick="registrarMovimentacao('saida')">⬇️ Saída</button>
+            </div>
+            <br>
+            <button class="btn btn-perigo" style="width:100%" onclick="fecharCaixa()">🔒 Fechar Caixa</button>
+            
+            <div class="divisor"></div>
+            <h3 style="font-size:15px; margin-bottom:8px;">📋 Movimentações de Hoje</h3>
+            <div id="listaMovimentacoes"></div>
+        </div>
+        
+        <div id="abrirCaixaArea">
+            <p>Valor inicial do caixa:</p>
+            <input type="number" step="0.01" id="valorInicial" placeholder="Ex: 50.00">
+            <button class="btn btn-primario" onclick="abrirCaixa()">🔓 Abrir Caixa</button>
+        </div>
+    </div>
+</section>
+
+<!-- 📱 SEÇÃO: CLIENTES -->
+<section id="secao-clientes" class="secao">
+    <div class="card">
+        <h2>👤 Cadastro de Clientes</h2>
+        <input type="text" id="cliNome" placeholder="Nome completo">
+        <input type="tel" id="cliTelefone" placeholder="Telefone com DDD">
+        <input type="text" id="cliEndereco" placeholder="Endereço">
+        <textarea id="cliObs" placeholder="Observações (opcional)" rows="2"></textarea>
+        <button class="btn btn-primario" onclick="salvarCliente()">✅ Salvar Cliente</button>
+    </div>
+    
+    <div class="card">
+        <h2>📋 Lista de Clientes</h2>
+        <div id="listaClientes"><p class="vazio">Nenhum cliente cadastrado ainda</p></div>
+    </div>
+</section>
+
+<!-- 📱 SEÇÃO: PRODUTOS -->
+<section id="secao-produtos" class="secao">
+    <div class="card">
+        <h2>📦 Cadastro de Produtos/Serviços</h2>
+        <input type="text" id="prodNome" placeholder="Nome do produto/serviço">
+        <select id="prodCategoria">
+            <option value="Material">Material</option>
+            <option value="Serviço">Serviço</option>
+            <option value="Acessório">Acessório</option>
+        </select>
+        <input type="number" step="0.01" id="prodPreco" placeholder="Preço de venda R$">
+        <input type="number" step="0.01" id="prodCusto" placeholder="Custo R$">
+        <input type="number" id="prodQuantidade" placeholder="Quantidade em estoque">
+        <input type="number" id="prodMinimo" placeholder="Estoque mínimo (aviso)">
+        <button class="btn btn-primario" onclick="salvarProduto()">✅ Salvar Produto</button>
+    </div>
+    
+    <div class="card">
+        <h2>📊 Estoque</h2>
+        <div id="alertasEstoque"></div>
+        <div id="listaProdutos"><p class="vazio">Nenhum produto cadastrado ainda</p></div>
+    </div>
+</section>
+
+<!-- 📱 SEÇÃO: ATENDIMENTOS -->
+<section id="secao-atendimentos" class="secao">
+    <div class="card">
+        <h2>📝 Novo Atendimento</h2>
+        <select id="atendCliente">
+            <option value="">-- Selecione o Cliente --</option>
+        </select>
+        <input type="date" id="atendData">
+        <textarea id="atendServicos" placeholder="Serviços realizados / Detalhes" rows="3"></textarea>
+        <input type="number" step="0.01" id="atendValor" placeholder="Valor total R$">
+        <select id="atendPagamento">
+            <option value="Dinheiro">Dinheiro</option>
+            <option value="Pix">Pix</option>
+            <option value="Cartão Crédito">Cartão de Crédito</option>
+            <option value="Cartão Débito">Cartão de Débito</option>
+            <option value="A Prazo">A Prazo</option>
+        </select>
+        <button class="btn btn-primario" onclick="registrarAtendimento()">✅ Registrar Atendimento</button>
+    </div>
+    
+    <div class="card">
+        <h2>📋 Histórico</h2>
+        <div id="listaAtendimentos"><p class="vazio">Nenhum atendimento registrado</p></div>
+    </div>
+</section>
+
+<!-- 🧭 BARRA DE NAVEGAÇÃO -->
+<nav class="nav">
+    <button class="nav-btn ativo" onclick="mostrarSecao('caixa', this)">
+        <span>💰</span>Caixa
+    </button>
+    <button class="nav-btn" onclick="mostrarSecao('clientes', this)">
+        <span>👤</span>Clientes
+    </button>
+    <button class="nav-btn" onclick="mostrarSecao('produtos', this)">
+        <span>📦</span>Produtos
+    </button>
+    <button class="nav-btn" onclick="mostrarSecao('atendimentos', this)">
+        <span>📝</span>Atendimentos
+    </button>
+</nav>
+
+<script>
+// ==========================================
+// BANCO DE DADOS LOCAL (IndexedDB)
+// ==========================================
+const DB_NAME = 'GerenciadorUnhas';
+const DB_VERSION = 1;
+let db;
+
+function abrirBanco() {
+    return new Promise((resolve, reject) => {
+        const req = indexedDB.open(DB_NAME, DB_VERSION);
+        
+        req.onupgradeneeded = e => {
+            db = e.target.result;
+            
+            // Clientes
+            if (!db.objectStoreNames.contains('clientes')) {
+                const store = db.createObjectStore('clientes', { keyPath: 'id', autoIncrement: true });
+                store.createIndex('nome', 'nome', { unique: false });
+            }
+            // Produtos
+            if (!db.objectStoreNames.contains('produtos')) {
+                const store = db.createObjectStore('produtos', { keyPath: 'id', autoIncrement: true });
+                store.createIndex('nome', 'nome', { unique: false });
+            }
+            // Caixa
+            if (!db.objectStoreNames.contains('caixa')) {
+                db.createObjectStore('caixa', { keyPath: 'id', autoIncrement: true });
+            }
+            // Movimentações
+            if (!db.objectStoreNames.contains('movimentacoes')) {
+                const store = db.createObjectStore('movimentacoes', { keyPath: 'id', autoIncrement: true });
+                store.createIndex('data', 'data', { unique: false });
+                store.createIndex('caixaId', 'caixaId', { unique: false });
+            }
+            // Atendimentos
+            if (!db.objectStoreNames.contains('atendimentos')) {
+                const store = db.createObjectStore('atendimentos', { keyPath: 'id', autoIncrement: true });
+                store.createIndex('data', 'data', { unique: false });
+            }
+        };
+        
+        req.onsuccess = e => {
+            db = e.target.result;
+            resolve(db);
+        };
+        
+        req.onerror = e => reject(e.target.error);
+    });
+}
+
+// Funções genéricas do banco
+function adicionar(store, dados) {
+    return new Promise((resolve, reject) => {
+        const tx = db.transaction(store, 'readwrite');
+        tx.objectStore(store).add(dados).onsuccess = e => resolve(e.target.result);
+    });
+}
+
+function listar(store) {
+    return new Promise((resolve) => {
+        const tx = db.transaction(store, 'readonly');
+        tx.objectStore(store).getAll().onsuccess = e => resolve(e.target.result);
+    });
+}
+
+function atualizar(store, dados) {
+    return new Promise((resolve) => {
+        const tx = db.transaction(store, 'readwrite');
+        tx.objectStore(store).put(dados).onsuccess = e => resolve(e.target.result);
+    });
+}
+
+function remover(store, id) {
+    return new Promise((resolve) => {
+        const tx = db.transaction(store, 'readwrite');
+        tx.objectStore(store).delete(id).onsuccess = e => resolve();
+    });
+}
+
+// ==========================================
+// NAVEGAÇÃO ENTRE TELAS
+// ==========================================
+function mostrarSecao(nome, botao) {
+    document.querySelectorAll('.secao').forEach(s => s.classList.remove('ativa'));
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('ativo'));
+    document.getElementById('secao-' + nome).classList.add('ativa');
+    botao.classList.add('ativo');
+    
+    if (nome === 'clientes') carregarClientes();
+    if (nome === 'produtos') carregarProdutos();
+    if (nome === 'atendimentos') { carregarClientesSelect(); carregarAtendimentos(); }
+    if (nome === 'caixa') verificarCaixaAberto();
+}
+
+// ==========================================
+// FORMATAÇÃO DE VALORES
+// ==========================================
+function formatarDinheiro(valor) {
+    return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(valor || 0);
+}
+
+function hoje() {
+    return new Date().toISOString().split('T')[0];
+}
+
+// ==========================================
+// CAIXA
+// ==========================================
+let caixaAtual = null;
+
+async function verificarCaixaAberto() {
+    const caixas = await listar('caixa');
+    const hojeStr = hoje();
+    caixaAtual = caixas.find(c => c.data === hojeStr && c.status === 'aberto');
+    
+    if (caixaAtual) {
+        document.getElementById('caixaStatus').className = 'caixa-status caixa-aberto';
+        document.getElementById('caixaStatus').innerHTML = '✅ Caixa ABERTO — ' + new Date().toLocaleDateString('pt-BR');
+        document.getElementById('abrirCaixaArea').style.display = 'none';
+        document.getElementById('caixaConteudo').style.display = 'block';
+        atualizarSaldoCaixa();
+        carregarMovimentacoes();
+    } else {
+        document.getElementById('caixaStatus').className = 'caixa-status caixa-fechado';
+        document.getElementById('caixaStatus').innerHTML = '🔒 Caixa Fechado — ' + new Date().toLocaleDateString('pt-BR');
+        document.getElementById('abrirCaixaArea').style.display = 'block';
+        document.getElementById('caixaConteudo').style.display = 'none';
+    }
+}
+
+async function abrirCaixa() {
+    const valorInicial = parseFloat(document.getElementById('valorInicial').value) || 0;
+    const caixa = {
+        data: hoje(),
+        valorInicial: valorInicial,
+        status: 'aberto',
+        abertura: new Date().toLocaleTimeString('pt-BR')
+    };
+    const id = await adicionar('caixa', caixa);
+    caixa.id = id;
+    caixaAtual = caixa;
+    verificarCaixaAberto();
+}
+
+async function fecharCaixa() {
+    if (!confirm('Confirma o fechamento do caixa? Verifique o saldo antes!')) return;
+    caixaAtual.status = 'fechado';
+    caixaAtual.fechamento = new Date().toLocaleTimeString('pt-BR');
+    await atualizar('caixa', caixaAtual);
+    caixaAtual = null;
+    verificarCaixaAberto();
+}
+
+async function registrarMovimentacao(tipo) {
+    if (!caixaAtual) { alert('Abra o caixa primeiro!'); return; }
+    const descricao = document.getElementById('movDescricao').value.trim();
+    const valor = parseFloat(document.getElementById('movValor').value);
+    if (!descricao || isNaN(valor) || valor <= 0) { alert('Preencha descrição e valor corretamente!'); return; }
+    
+    await adicionar('movimentacoes', {
+        caixaId: caixaAtual.id,
+        data: hoje(),
+        hora: new Date().toLocaleTimeString('pt-BR'),
+        descricao: descricao,
+        valor: valor,
+        tipo: tipo
+    });
+    
+    // Limpar campos
+    document.getElementById('movDescricao').value = '';
+    document.getElementById('movValor').value = '';
+    
+    atualizarSaldoCaixa();
+    carregarMovimentacoes();
+}
+
+async function atualizarSaldoCaixa() {
+    const movs = await listar('movimentacoes');
+    const movHoje = movs.filter(m => m.caixaId === caixaAtual.id);
+    
+    const entradas = movHoje.filter(m => m.tipo === 'entrada').reduce((s, m) => s + m.valor, 0);
+    const saidas = movHoje.filter(m => m.tipo === 'saida').reduce((s, m) => s + m.valor, 0);
+    
+    document.getElementById('saldoInicial').textContent = formatarDinheiro(caixaAtual.valorInicial);
+    document.getElementById('totalEntradas').textContent = formatarDinheiro(entradas);
+    document.getElementById('totalSaidas').textContent = formatarDinheiro(saidas);
+    document.getElementById('saldoAtual').textContent = formatarDinheiro(caixaAtual.valorInicial + entradas - saidas);
+}
+
+async function carregarMovimentacoes() {
+    const movs = await listar('movimentacoes');
+    const lista = movs.filter(m => m.caixaId === caixaAtual.id).reverse();
+    const el = document.getElementById('listaMovimentacoes');
+    
+    if (lista.length === 0) {
+        el.innerHTML = '<p class="vazio">Sem movimentações ainda</p>';
+        return;
+    }
+    
+    el.innerHTML = lista.map(m => `
+        <div class="item-lista">
+            <div class="item-info">
+                <h4>${m.tipo === 'entrada' ? '⬆️' : '⬇️'} ${m.descricao}</h4>
+                <p>${m.hora}</p>
+            </div>
+            <div style="font-weight:bold; color: ${m.tipo === 'entrada' ? '#4caf50' : '#f44336'}">
+                ${m.tipo === 'entrada' ? '+' : '-'}${formatarDinheiro(m.valor)}
+            </div>
+        </div>
+    `).join('');
+}
+
+// ==========================================
+// CLIENTES
+// ==========================================
+async function salvarCliente() {
+    const dados = {
+        nome: document.getElementById('cliNome').value.trim(),
+        telefone: document.getElementById('cliTelefone').value.trim(),
+        endereco: document.getElementById('cliEndereco').value.trim(),
+        observacoes: document.getElementById('cliObs').value.trim()
+    };
+    
+    if (!dados.nome) { alert('Informe o nome do cliente!'); return; }
+    
+    await adicionar('clientes', dados);
+    alert('✅ Cliente cadastrado!');
+    
+    // Limpar
+    document.getElementById('cliNome').value = '';
+    document.getElementById('cliTelefone').value = '';
+    document.getElementById('cliEndereco').value = '';
+    document.getElementById('cliObs').value = '';
+    
+    carregarClientes();
+}
+
+async function carregarClientes() {
+    const lista = await listar('clientes');
+    const el = document.getElementById('listaClientes');
+    
+    if (lista.length === 0) {
+        el.innerHTML = '<p class="vazio">Nenhum cliente cadastrado ainda</p>';
+        return;
+    }
+    
+    el.innerHTML = lista.map(cli => `
+        <div class="item-lista">
+            <div class="item-info">
+                <h4>👤 ${cli.nome}</h4>
+                <p>📞 ${cli.telefone || 'Não informado'}</p>
+                ${cli.endereco ? `<p>📍 ${cli.endereco}</p>` : ''}
+            </div>
+            <div class="item-acoes">
+                <button class="btn btn-perigo btn-menor" onclick="excluirCliente(${cli.id})">🗑️</button>
+            </div>
+        </div>
+    `).join('');
+}
+
+async function excluirCliente(id) {
+    if (!confirm('Excluir este cliente?')) return;
+    await remover('clientes', id);
+    carregarClientes();
+}
+
+async function carregarClientesSelect() {
+    const lista = await listar('clientes');
+    const sel = document.getElementById('atendCliente');
+    sel.innerHTML = '<option value="">-- Selecione o Cliente --</option>' + 
+        lista.map(c => `<option value="${c.id}">${c.nome}</option>`).join('');
+}
+
+// ==========================================
+// PRODUTOS / ESTOQUE
+// ==========================================
+async function salvarProduto() {
+    const dados = {
+        nome: document.getElementById('prodNome').value.trim(),
+        categoria: document.getElementById('prodCategoria').value,
+        preco: parseFloat(document.getElementById('prodPreco').value) || 0,
+        custo: parseFloat(document.getElementById('prodCusto').value) || 0,
+        quantidade: parseInt(document.getElementById('prodQuantidade').value) || 0,
+        minimo: parseInt(document.getElementById('prodMinimo').value) || 5
+    };
+    
+    if (!dados.nome) { alert('Informe o nome do produto!'); return; }
+    
+    await adicionar('produtos', dados);
+    alert('✅ Produto cadastrado!');
+    
+    // Limpar
+    document.getElementById('prodNome').value = '';
+    document.getElementById('prodPreco').value = '';
+    document.getElementById('prodCusto').value = '';
+    document.getElementById('prodQuantidade').value = '';
+    document.getElementById('prodMinimo').value = '';
+    
+    carregarProdutos();
+}
+
+async function carregarProdutos() {
+    const lista = await listar('produtos');
+    const el = document.getElementById('listaProdutos');
+    const alertasEl = document.getElementById('alertasEstoque');
+    
+    // Alertas de estoque baixo
+    const baixo = lista.filter(p => p.quantidade <= p.minimo);
+    if (baixo.length > 0) {
+        alertasEl.innerHTML = baixo.map(p => `
+            <div class="alerta-estoque">
+                ⚠️ <strong>${p.nome}</strong>: ${p.quantidade} unidades (mínimo: ${p.minimo})
+            </div>
+        `).join('');
+    } else {
+        alertasEl.innerHTML = '';
+    }
+    
+    if (lista.length === 0) {
+        el.innerHTML = '<p class="vazio">Nenhum produto cadastrado ainda</p>';
+        return;
+    }
+    
+    el.innerHTML = lista.map(prod => `
+        <div class="item-lista">
+            <div class="item-info">
+                <h4>📦 ${prod.nome} <small style="color:#888">(${prod.categoria})</small></h4>
+                <p>💰 Venda: ${formatarDinheiro(prod.preco)} | Custo: ${formatarDinheiro(prod.custo)}</p>
+                <p style="font-weight: ${prod.quantidade <= prod.minimo ? 'bold; color:#e65100' : 'normal'}">
+                    📊 Estoque: ${prod.quantidade} unidades
+                </p>
+            </div>
+            <div class="item-acoes">
+                <button class="btn btn-azul btn-menor" onclick="ajustarEstoque(${prod.id}, 1)">+</button>
+                <button class="btn btn-azul btn-menor" onclick="ajustarEstoque(${prod.id}, -1)">-</button>
+                <button class="btn btn-perigo btn-menor" onclick="excluirProduto(${prod.id})">🗑️</button>
+            </div>
+        </div>
+    `).join('');
+}
+
+async function ajustarEstoque(id, qtd) {
+    const lista = await listar('produtos');
+    const prod = lista.find(p => p.id === id);
+    if (!prod) return;
+    prod.quantidade = Math.max(0, (prod.quantidade || 0) + qtd);
+    await atualizar('produtos', prod);
+    carregarProdutos();
+}
+
+async function excluirProduto(id) {
+    if (!confirm('Excluir este produto?')) return;
+    await remover('produtos', id);
+    carregarProdutos();
+}
+
+// ==========================================
+// ATENDIMENTOS
+// ==========================================
+async function registrarAtendimento() {
+    const clienteId = document.getElementById('atendCliente').value;
+    const data = document.getElementById('atendData').value || hoje();
+    const servicos = document.getElementById('atendServicos').value.trim();
+    const valor = parseFloat(document.getElementById('atendValor').value);
+    const pagamento = document.getElementById('atendPagamento').value;
+    
+    if (!clienteId) { alert('Selecione o cliente!'); return; }
+    if (!servicos || isNaN(valor) || valor <= 0) { alert('Preencha os dados corretamente!'); return; }
+    
+    const listaClientes = await listar('clientes');
+    const cliente = listaClientes.find(c => c.id == clienteId);
+    
+    await adicionar('atendimentos', {
+        clienteId: parseInt(clienteId),
+        clienteNome: cliente.nome,
+        data: data,
+        servicos: servicos,
+        valor: valor,
+        pagamento: pagamento
+    });
+    
+    // Se caixa estiver aberto, registra como entrada também
+    if (caixaAtual) {
+        await adicionar('movimentacoes', {
+            caixaId: caixaAtual.id,
+            data: hoje(),
+            hora: new Date().toLocaleTimeString('pt-BR'),
+            descricao: `Atendimento: ${cliente.nome}`,
+            valor: valor,
+            tipo: 'entrada'
+        });
+        atualizarSaldoCaixa();
+        carregarMovimentacoes();
+    }
+    
+    alert('✅ Atendimento registrado!');
+    
+    // Limpar
+    document.getElementById('atendServicos').value = '';
+    document.getElementById('atendValor').value = '';
+    
+    carregarAtendimentos();
+}
+
+async function carregarAtendimentos() {
+    const lista = await listar('atendimentos');
+    lista.sort((a, b) => new Date(b.data) - new Date(a.data));
+    const el = document.getElementById('listaAtendimentos');
+    
+    if (lista.length === 0) {
+        el.innerHTML = '<p class="vazio">Nenhum atendimento registrado</p>';
+        return;
+    }
+    
+    el.innerHTML = lista.map(at => `
+        <div class="item-lista">
+            <div class="item-info">
+                <h4>📅 ${new Date(at.data + 'T00:00:00').toLocaleDateString('pt-BR')} — ${at.clienteNome}</h4>
+                <p>💇 ${at.servicos}</p>
+                <p>💳 ${at.pagamento}</p>
+            </div>
+            <div style="font-weight:bold; color: var(--rosa); font-size:16px">
+                ${formatarDinheiro(at.valor)}
+            </div>
+        </div>
+    `).join('');
+}
+
+// ==========================================
+// INICIALIZAÇÃO
+// ==========================================
+window.onload = async function() {
+    await abrirBanco();
+    document.getElementById('atendData').value = hoje();
+    verificarCaixaAberto();
+};
+</script>
+</body>
+</html>
