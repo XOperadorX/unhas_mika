@@ -1,0 +1,9 @@
+unhas-mikaela/
+├── server.js              ← SUBSTITUIR (arquivo 1)
+├── package.json           ← SUBSTITUIR (arquivo 2)
+├── banco.db               ← não mexe (fica igual)
+├── public/
+│   └── index.html         ← SUBSTITUIR (arquivo 3)
+├── loja/
+│   └── index.html         ← não mexe (fica igual)
+└── uploads/               ← não mexe

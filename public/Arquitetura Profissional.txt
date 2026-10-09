@@ -1,0 +1,14 @@
+┌─────────────────────────────────────────────────┐
+│  SEGURANÇA                                       │
+│  ├─ Senhas com hash bcrypt (NUNCA em texto)     │
+│  ├─ Sessão via token JWT em cookie httpOnly     │
+│  ├─ Middleware de autenticação em toda API      │
+│  └─ Middleware de permissão por cargo           │
+├─────────────────────────────────────────────────┤
+│  HIERARQUIA (5 níveis)                          │
+│  ├─ 👑 Admin        → tudo                      │
+│  ├─ 💅 Líder        → tudo menos usuários       │
+│  ├─ ⭐ Master       → atendimentos + estoque    │
+│  ├─ ✨ Pleno        → seus atendimentos         │
+│  └─ 🌱 Júnior/Aux   → só seus atendimentos      │
+└─────────────────────────────────────────────────┘
