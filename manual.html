@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manual — Unhas Mikaela</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, 'Segoe UI', sans-serif; }
+  :root { --rosa: #e91e63; --escuro: #2d2d2d; --verde: #4caf50; --azul: #2196f3; --laranja: #ff9800; --roxo: #9c27b0; }
+  body { background: #fef5f9; color: #2d2d2d; line-height: 1.7; }
+
+  /* CAPA */
+  .capa { background: linear-gradient(135deg, #e91e63, #ad1457); color: white; padding: 60px 20px; text-align: center; position: relative; overflow: hidden; }
+  .capa::before { content: '💅'; position: absolute; font-size: 300px; opacity: 0.08; top: -60px; right: -80px; transform: rotate(-20deg); }
+  .capa h1 { font-size: 34px; margin-bottom: 10px; position: relative; z-index: 1; }
+  .capa .sub { font-size: 16px; opacity: 0.9; margin-bottom: 30px; position: relative; z-index: 1; }
+  .capa .versao { display: inline-block; background: rgba(255,255,255,0.2); padding: 6px 16px; border-radius: 20px; font-size: 13px; position: relative; z-index: 1; }
+
+  /* CONTAINER */
+  .container { max-width: 800px; margin: 0 auto; padding: 24px 16px 60px; }
+
+  /* ÍNDICE */
+  .indice { background: white; border-radius: 16px; padding: 24px; margin-top: -30px; box-shadow: 0 8px 30px rgba(0,0,0,0.1); position: relative; z-index: 2; }
+  .indice h2 { font-size: 20px; color: var(--rosa); margin-bottom: 16px; }
+  .indice ul { list-style: none; }
+  .indice li { margin: 8px 0; }
+  .indice a { color: #2d2d2d; text-decoration: none; font-size: 15px; display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 8px; transition: 0.2s; }
+  .indice a:hover { background: #fef5f9; color: var(--rosa); }
+  .indice a .num { background: var(--rosa); color: white; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; flex-shrink: 0; }
+
+  /* SEÇÕES */
+  section { background: white; border-radius: 16px; padding: 24px; margin: 20px 0; box-shadow: 0 4px 16px rgba(0,0,0,0.06); scroll-margin-top: 20px; }
+  section h2 { font-size: 22px; color: var(--rosa); margin-bottom: 16px; padding-bottom: 12px; border-bottom: 2px solid #fce4ec; display: flex; align-items: center; gap: 10px; }
+  section h3 { font-size: 17px; color: #2d2d2d; margin: 20px 0 10px 0; display: flex; align-items: center; gap: 8px; }
+  section h3::before { content: ''; width: 4px; height: 20px; background: var(--rosa); border-radius: 2px; }
+  section p { margin: 10px 0; color: #444; }
+  section ul, section ol { padding-left: 24px; margin: 10px 0; }
+  section li { margin: 6px 0; color: #444; }
+
+  /* PASSOS */
+  .passos { counter-reset: passo; list-style: none; padding: 0; }
+  .passos li { counter-increment: passo; position: relative; padding: 14px 14px 14px 56px; margin: 10px 0; background: #fafafa; border-radius: 10px; border-left: 4px solid var(--rosa); font-size: 15px; }
+  .passos li::before { content: counter(passo); position: absolute; left: 14px; top: 50%; transform: translateY(-50%); width: 30px; height: 30px; background: var(--rosa); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px; }
+
+  /* CAIXAS */
+  .dica { background: #e3f2fd; border-left: 4px solid var(--azul); padding: 14px 16px; border-radius: 8px; margin: 14px 0; font-size: 14px; }
+  .dica::before { content: '💡 '; font-weight: bold; }
+
+  .aviso { background: #fff3e0; border-left: 4px solid var(--laranja); padding: 14px 16px; border-radius: 8px; margin: 14px 0; font-size: 14px; }
+  .aviso::before { content: '⚠️ '; font-weight: bold; }
+
+  .sucesso { background: #e8f5e9; border-left: 4px solid var(--verde); padding: 14px 16px; border-radius: 8px; margin: 14px 0; font-size: 14px; }
+  .sucesso::before { content: '✅ '; font-weight: bold; }
+
+  .perigo { background: #ffebee; border-left: 4px solid var(--vermelho); padding: 14px 16px; border-radius: 8px; margin: 14px 0; font-size: 14px; }
+  .perigo::before { content: '🚨 '; font-weight: bold; }
+
+  /* TABELAS */
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+  th { background: var(--rosa); color: white; padding: 12px; text-align: left; font-size: 13px; }
+  td { padding: 12px; border-bottom: 1px solid #f0f0f0; }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: #fafafa; }
+
+  /* BOTÃO PDF */
+  .btn-pdf { position: fixed; bottom: 24px; right: 24px; background: var(--rosa); color: white; border: none; padding: 16px 24px; border-radius: 30px; font-size: 15px; font-weight: bold; cursor: pointer; box-shadow: 0 8px 24px rgba(233,30,99,0.4); z-index: 100; }
+  .btn-pdf:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(233,30,99,0.5); }
+
+  /* PRINT */
+  @media print {
+    body { background: white; }
+    .capa { page-break-after: always; }
+    .indice { page-break-after: always; box-shadow: none; border: 1px solid #ddd; }
+    section { page-break-inside: avoid; box-shadow: none; border: 1px solid #eee; margin: 10px 0; }
+    .btn-pdf { display: none; }
+    section h2 { color: #e91e63 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .passos li::before { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+
+  /* MOBILE */
+  @media (max-width: 600px) {
+    .capa h1 { font-size: 26px; }
+    section { padding: 18px; }
+    section h2 { font-size: 19px; }
+    .btn-pdf { padding: 12px 18px; font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- CAPA -->
+<div class="capa">
+  <h1>💅 Unhas Mikaela</h1>
+  <p class="sub">Manual Completo do Sistema de Gestão</p>
+  <span class="versao">📱 Versão 1.0 · 2026 · 100% Offline</span>
+</div>
+
+<div class="container">
+
+<!-- ÍNDICE -->
+<div class="indice">
+  <h2>📋 Índice</h2>
+  <ul>
+    <li><a href="#intro"><span class="num">1</span> Introdução</a></li>
+    <li><a href="#instalar"><span class="num">2</span> Como Instalar no iPhone</a></li>
+    <li><a href="#login"><span class="num">3</span> Login e Primeiro Acesso</a></li>
+    <li><a href="#caixa"><span class="num">4</span> Controle de Caixa</a></li>
+    <li><a href="#clientes"><span class="num">5</span> Clientes</a></li>
+    <li><a href="#produtos"><span class="num">6</span> Produtos e Estoque</a></li>
+    <li><a href="#atendimentos"><span class="num">7</span> Atendimentos e Agendamentos</a></li>
+    <li><a href="#equipe"><span class="num">8</span> Equipe e Hierarquia</a></li>
+    <li><a href="#comissoes"><span class="num">9</span> Relatório de Comissões</a></li>
+    <li><a href="#financas"><span class="num">10</span> Educação Financeira (50/30/20)</a></li>
+    <li><a href="#backup"><span class="num">11</span> Backup e Restauração</a></li>
+    <li><a href="#dicas"><span class="num">12</span> Dicas e Boas Práticas</a></li>
+    <li><a href="#problemas"><span class="num">13</span> Solução de Problemas</a></li>
+    <li><a href="#suporte"><span class="num">14</span> Suporte</a></li>
+  </ul>
+</div>
+
+<!-- 1. INTRODUÇÃO -->
+<section id="intro">
+  <h2>🎯 1. Introdução</h2>
+  <p>O <strong>Unhas Mikaela</strong> é um sistema de gestão profissional desenvolvido especialmente para o seu salão de unhas. Ele funciona <strong>100% offline</strong> — ou seja, não precisa de internet para usar.</p>
+
+  <h3>O que você pode fazer</h3>
+  <ul>
+    <li>💰 Controlar entradas e saídas do caixa diário</li>
+    <li>👤 Cadastrar e gerenciar clientes</li>
+    <li>📦 Controlar estoque de produtos com foto</li>
+    <li>📝 Agendar atendimentos e cobrar taxa de falta</li>
+    <li>👥 Cadastrar manicures com níveis hierárquicos</li>
+    <li>📊 Calcular comissões por profissional</li>
+    <li>🎓 Aplicar educação financeira (método 50/30/20)</li>
+    <li>💾 Fazer backup dos dados</li>
+  </ul>
+
+  <div class="sucesso">
+    <strong>Vantagem:</strong> Todos os dados ficam salvos no seu celular, com segurança e privacidade. Ninguém acessa sem o seu desbloqueio.
+  </div>
+</section>
+
+<!-- 2. INSTALAR -->
+<section id="instalar">
+  <h2>📲 2. Como Instalar no iPhone</h2>
+  <p>O Unhas Mikaela funciona como um <strong>app instalado</strong> no seu iPhone 13 Pro Max — com ícone próprio na tela inicial.</p>
+
+  <h3>Passo a passo</h3>
+  <ol class="passos">
+    <li>Abra o <strong>Safari</strong> no iPhone (não use Chrome nem Instagram).</li>
+    <li>Acesse o endereço do sistema (você recebeu da administradora ou via QR Code).</li>
+    <li>Aguarde carregar o app completo.</li>
+    <li>Toque no ícone <strong>Compartilhar</strong> (quadrado com seta para cima) na barra inferior.</li>
+    <li>Role a lista e toque em <strong>"Adicionar à Tela de Início"</strong>.</li>
+    <li>Confirme o nome <strong>Unhas Mikaela</strong> e toque em <strong>Adicionar</strong>.</li>
+    <li>Pronto! O ícone rosa com o 💅 aparecerá na sua tela inicial.</li>
+  </ol>
+
+  <div class="dica">
+    A partir de agora, abra <strong>direto pelo ícone</strong>. Ele abre em tela cheia (sem a barra do Safari) e parece um app nativo.
+  </div>
+
+  <div class="aviso">
+    Use sempre o <strong>Safari</strong> para instalar. O Chrome do iPhone <strong>não permite</strong> adicionar à tela inicial.
+  </div>
+</section>
+
+<!-- 3. LOGIN -->
+<section id="login">
+  <h2>🔐 3. Login e Primeiro Acesso</h2>
+
+  <h3>Primeiro acesso (administradora)</h3>
+  <p>Ao abrir o app pela primeira vez, use:</p>
+  <table>
+    <tr><th>Campo</th><th>Valor</th></tr>
+    <tr><td>📧 Email</td><td><strong>admin@mikaela.com</strong></td></tr>
+    <tr><td>🔑 Senha</td><td><strong>admin123</strong></td></tr>
+  </table>
+
+  <div class="perigo">
+    <strong>Troque a senha no primeiro acesso!</strong> Cadastre sua conta pessoal na aba <strong>👥 Equipe</strong> e use ela daqui em diante.
+  </div>
+
+  <h3>Próximos acessos</h3>
+  <p>Depois de criar seu próprio usuário, entre com ele. A sessão dura 7 dias — não precisa digitar a senha sempre.</p>
+</section>
+
+<!-- 4. CAIXA -->
+<section id="caixa">
+  <h2>💰 4. Controle de Caixa</h2>
+  <p>O caixa é o coração do sistema. Todo dia você abre o caixa de manhã e fecha à noite.</p>
+
+  <h3>Como abrir o caixa</h3>
+  <ol class="passos">
+    <li>Vá na aba <strong>💰 Caixa</strong>.</li>
+    <li>Digite o valor que está na gaveta (ex: 50.00).</li>
+    <li>Toque em <strong>🔓 Abrir Caixa</strong>.</li>
+  </ol>
+
+  <h3>Como registrar entrada ou saída</h3>
+  <ol class="passos">
+    <li>Digite a <strong>descrição</strong> (ex: "Esmaltação cliente Ana").</li>
+    <li>Digite o <strong>valor</strong> em reais.</li>
+    <li>Escolha a <strong>categoria</strong>: Essencial, Desejo ou Investimento.</li>
+    <li>Toque em <strong>⬆️ Entrada</strong> (dinheiro que entra) ou <strong>⬇️ Saída</strong> (dinheiro que sai).</li>
+  </ol>
+
+  <h3>Entendendo as categorias</h3>
+  <table>
+    <tr><th>Categoria</th><th>Exemplos</th><th>Meta</th></tr>
+    <tr><td>🏠 Essencial</td><td>Aluguel, luz, água, material de trabalho</td><td>50%</td></tr>
+    <tr><td>🎉 Desejo</td><td>Delivery, roupa, salão, passeio</td><td>30%</td></tr>
+    <tr><td>📈 Investimento</td><td>Poupança, curso, ferramenta nova</td><td>20%</td></tr>
+  </table>
+
+  <h3>Fechar o caixa</h3>
+  <p>Ao final do dia, toque em <strong>🔒 Fechar Caixa</strong>. O sistema calcula o saldo final automaticamente e guarda no histórico.</p>
+
+  <div class="dica">
+    Se lançou algo errado, use os botões ✏️ (editar), ↩️ (estornar) ou 🗑️ (excluir) ao lado de cada movimentação.
+  </div>
+</section>
+
+<!-- 5. CLIENTES -->
+<section id="clientes">
+  <h2>👤 5. Clientes</h2>
+
+  <h3>Cadastrar cliente</h3>
+  <ol class="passos">
+    <li>Vá na aba <strong>👤 Clientes</strong>.</li>
+    <li>Preencha: nome, telefone, endereço e observações.</li>
+    <li>Toque em <strong>✅ Salvar Cliente</strong>.</li>
+  </ol>
+
+  <h3>Editar ou excluir</h3>
+  <p>Na lista, cada cliente tem botões:</p>
+  <ul>
+    <li><strong>✏️</strong> — Editar informações</li>
+    <li><strong>🗑️</strong> — Excluir cliente</li>
+  </ul>
+
+  <div class="dica">
+    Use o campo <strong>Observações</strong> para anotar preferências: "prefere esmalte vermelho", "alérgica a acetona", etc.
+  </div>
+</section>
+
+<!-- 6. PRODUTOS -->
+<section id="produtos">
+  <h2>📦 6. Produtos e Estoque</h2>
+  <p>Controle tudo que você vende ou usa no salão.</p>
+
+  <h3>Cadastrar produto</h3>
+  <ol class="passos">
+    <li>Vá na aba <strong>📦 Produtos</strong>.</li>
+    <li>Digite o nome (ex: "Esmalte vermelho" ou "Alongamento em gel").</li>
+    <li>Escolha a categoria.</li>
+    <li>Preencha <strong>preço de compra</strong> e <strong>preço de venda</strong> — o lucro é calculado automaticamente.</li>
+    <li>Informe quantidade em estoque, mínimo e máximo.</li>
+    <li>Toque em <strong>📸 Foto</strong> para adicionar uma imagem (opcional).</li>
+    <li>Toque em <strong>✅ Salvar Produto</strong>.</li>
+  </ol>
+
+  <h3>Entendendo os campos</h3>
+  <table>
+    <tr><th>Campo</th><th>O que significa</th></tr>
+    <tr><td>💸 Compra</td><td>Quanto você paga pelo produto</td></tr>
+    <tr><td>💰 Venda</td><td>Quanto você cobra do cliente</td></tr>
+    <tr><td>📈 Lucro</td><td>Calculado: venda - compra</td></tr>
+    <tr><td>📊 Estoque</td><td>Quantidade atual</td></tr>
+    <tr><td>⚠️ Mínimo</td><td>Quando chegar aqui, o sistema avisa</td></tr>
+    <tr><td>📈 Máximo</td><td>Quantidade ideal para recompra</td></tr>
+  </table>
+
+  <div class="aviso">
+    Quando o estoque estiver <strong>no mínimo ou abaixo</strong>, aparece um alerta laranja no topo. Compre mais!
+  </div>
+</section>
+
+<!-- 7. ATENDIMENTOS -->
+<section id="atendimentos">
+  <h2>📝 7. Atendimentos e Agendamentos</h2>
+  <p>Aqui você registra tanto <strong>agendamentos futuros</strong> quanto <strong>atendimentos já feitos</strong>.</p>
+
+  <h3>Novo agendamento</h3>
+  <ol class="passos">
+    <li>Toque em <strong>➕ Novo Atendimento / Agendamento</strong>.</li>
+    <li>Escolha <strong>📅 Agendar (futuro)</strong>.</li>
+    <li>Selecione o cliente, data, hora e serviço.</li>
+    <li>Digite o <strong>valor previsto</strong> (ex: R$ 100,00).</li>
+    <li>Defina a <strong>taxa se não comparecer</strong> (padrão 30%).</li>
+    <li>Toque em <strong>💾 Salvar</strong>.</li>
+  </ol>
+
+  <h3>Atendimento direto (já foi feito)</h3>
+  <ol class="passos">
+    <li>Toque em <strong>➕ Novo Atendimento / Agendamento</strong>.</li>
+    <li>Escolha <strong>✅ Já foi feito</strong>.</li>
+    <li>Preencha cliente, data, hora e serviço.</li>
+    <li>Digite o <strong>valor cobrado</strong> e a forma de pagamento.</li>
+    <li>Toque em <strong>💾 Salvar</strong> — a comissão é calculada automaticamente.</li>
+  </ol>
+
+  <h3>Marcar presença ou falta</h3>
+  <p>No dia do agendamento, use os botões no card:</p>
+  <ul>
+    <li><strong>✅ Compareceu</strong> — vira atendimento normal e entra no caixa</li>
+    <li><strong>❌ Faltou</strong> — cobra a taxa automaticamente e lança no caixa</li>
+  </ul>
+
+  <div class="dica">
+    Use as abas <strong>Todos / 📅 Agendados / ✅ Feitos / ❌ Faltas</strong> para filtrar. E o filtro de data para ver um dia específico.
+  </div>
+</section>
+
+<!-- 8. EQUIPE -->
+<section id="equipe">
+  <h2>👥 8. Equipe e Hierarquia</h2>
+  <p>Cada profissional tem um nível de carreira que define o que pode fazer e qual a comissão.</p>
+
+  <h3>Níveis de carreira</h3>
+  <table>
+    <tr><th>Cargo</th><th>Nível</th><th>Comissão</th></tr>
+    <tr><td>👑 Administradora</td><td>5</td><td>0%</td></tr>
+    <tr><td>💅 Manicure Líder</td><td>4</td><td>10%</td></tr>
+    <tr><td>🦶 Podóloga</td><td>4</td><td>50%</td></tr>
+    <tr><td>⭐ Nail Designer Master</td><td>3</td><td>40%</td></tr>
+    <tr><td>✨ Manicure Pleno</td><td>2</td><td>50%</td></tr>
+    <tr><td>🌱 Manicure Júnior</td><td>1</td><td>50%</td></tr>
+    <tr><td>🌿 Auxiliar</td><td>0</td><td>30%</td></tr>
+  </table>
+
+  <h3>Cadastrar profissional</h3>
+  <ol class="passos">
+    <li>Vá em <strong>👥 Equipe</strong> (só admin vê).</li>
+    <li>Preencha nome, email de acesso, senha e cargo.</li>
+    <li>Toque em <strong>✅ Salvar</strong>.</li>
+    <li>O profissional entra com o email e senha cadastrados.</li>
+  </ol>
+
+  <div class="aviso">
+    Cada profissional <strong>só vê os próprios atendimentos</strong> (exceto Master, Líder e Admin, que veem todos).
+  </div>
+</section>
+
+<!-- 9. COMISSÕES -->
+<section id="comissoes">
+  <h2>📊 9. Relatório de Comissões</h2>
+  <p>Veja quanto cada profissional faturou e quanto de comissão tem a receber.</p>
+
+  <h3>Como usar</h3>
+  <ol class="passos">
+    <li>Vá na aba <strong>📊 Comissões</strong>.</li>
+    <li>Use <strong>◀ ▶</strong> para navegar entre meses.</li>
+    <li>Veja o resumo: faturamento, comissões, atendimentos e ticket médio.</li>
+    <li>Toque em um profissional para <strong>expandir</strong> e ver cada atendimento.</li>
+  </ol>
+
+  <div class="dica">
+    Esta seção só aparece para cargos <strong>Master, Líder, Podóloga e Admin</strong>. Júnior e Auxiliar não têm acesso.
+  </div>
+</section>
+
+<!-- 10. FINANÇAS -->
+<section id="financas">
+  <h2>🎓 10. Educação Financeira (50/30/20)</h2>
+  <p>O sistema aplica automaticamente o <strong>método 50/30/20</strong> para você controlar os gastos.</p>
+
+  <h3>Como funciona</h3>
+  <ul>
+    <li><strong>50% Essencial</strong> — gastos obrigatórios (aluguel, contas, material)</li>
+    <li><strong>30% Desejo</strong> — lazer e prazeres (delivery, roupa, passeio)</li>
+    <li><strong>20% Investimento</strong> — poupança, reserva, cursos</li>
+  </ul>
+
+  <h3>Como usar</h3>
+  <ol class="passos">
+    <li>Vá na aba <strong>🎓 Finanças</strong>.</li>
+    <li>Veja o resumo do mês: entradas, saídas e economia.</li>
+    <li>Veja o <strong>gráfico donut</strong> com a distribuição por categoria.</li>
+    <li>Confira as <strong>barras de progresso</strong> das metas.</li>
+    <li>Leia os <strong>insights automáticos</strong> com dicas.</li>
+  </ol>
+
+  <h3>Personalizar metas</h3>
+  <ol class="passos">
+    <li>Toque em <strong>⚙️ Personalizar Metas</strong>.</li>
+    <li>Altere os percentuais (ex: 60/20/20).</li>
+    <li>A soma precisa dar <strong>100%</strong>.</li>
+    <li>Toque em <strong>💾 Salvar</strong>.</li>
+  </ol>
+
+  <div class="aviso">
+    <strong>Importante:</strong> toda vez que você lança uma <strong>saída</strong> no caixa, escolha a categoria correta. Assim o sistema calcula certo.
+  </div>
+</section>
+
+<!-- 11. BACKUP -->
+<section id="backup">
+  <h2>💾 11. Backup e Restauração</h2>
+  <p>Como os dados ficam <strong>só no seu iPhone</strong>, fazer backup regular é ESSENCIAL.</p>
+
+  <div class="perigo">
+    <strong>Faça backup toda semana!</strong> Se você apagar o app, trocar de celular ou limpar o Safari, os dados podem ser perdidos sem backup.
+  </div>
+
+  <h3>Exportar backup</h3>
+  <ol class="passos">
+    <li>Vá na aba <strong>💾 Backup</strong>.</li>
+    <li>Toque em <strong>📥 Baixar Backup (.json)</strong>.</li>
+    <li>O arquivo vai para a pasta Downloads.</li>
+    <li>Envie para <strong>iCloud Drive</strong>, <strong>Google Drive</strong> ou <strong>WhatsApp</strong> para você mesma.</li>
+  </ol>
+
+  <h3>Restaurar backup</h3>
+  <ol class="passos">
+    <li>Vá na aba <strong>💾 Backup</strong>.</li>
+    <li>Toque em <strong>Escolher arquivo</strong> e selecione o .json.</li>
+    <li>Toque em <strong>📤 Restaurar</strong>.</li>
+    <li>Confirme — os dados atuais serão substituídos.</li>
+  </ol>
+
+  <div class="dica">
+    Nome sugerido do arquivo: <strong>backup-mikaela-2026-10-09.json</strong> (com a data). Assim você sabe qual é o mais recente.
+  </div>
+</section>
+
+<!-- 12. DICAS -->
+<section id="dicas">
+  <h2>✨ 12. Dicas e Boas Práticas</h2>
+
+  <h3>Rotina diária</h3>
+  <ul>
+    <li>🔓 <strong>Manhã:</strong> abrir o caixa com o valor inicial</li>
+    <li>📝 <strong>Durante o dia:</strong> lançar cada atendimento e movimentação</li>
+    <li>🔒 <strong>Noite:</strong> fechar o caixa e conferir o saldo</li>
+  </ul>
+
+  <h3>Rotina semanal</h3>
+  <ul>
+    <li>💾 Fazer backup no iCloud</li>
+    <li>📦 Conferir estoque e repor produtos no mínimo</li>
+    <li>📊 Revisar comissões dos profissionais</li>
+  </ul>
+
+  <h3>Rotina mensal</h3>
+  <ul>
+    <li>🎓 Ver o relatório financeiro 50/30/20</li>
+    <li>📈 Analisar evolução dos últimos 6 meses</li>
+    <li>💅 Reconhecer a profissional destaque do mês (ranking)</li>
+  </ul>
+</section>
+
+<!-- 13. PROBLEMAS -->
+<section id="problemas">
+  <h2>🆘 13. Solução de Problemas</h2>
+
+  <h3>O app não abre</h3>
+  <ul>
+    <li>Verifique se está conectado ao Wi-Fi correto</li>
+    <li>Feche o Safari (arraste para cima) e abra novamente</li>
+    <li>Reinstale: apague o ícone e adicione novamente pela URL</li>
+  </ul>
+
+  <h3>Perdi os dados</h3>
+  <ul>
+    <li>Restaure o backup mais recente</li>
+    <li>Se não tiver backup, os dados foram perdidos (por isso é essencial fazer backup!)</li>
+  </ul>
+
+  <h3>Não consigo fazer login</h3>
+  <ul>
+    <li>Verifique se digitou o email correto (minúsculas, sem espaço)</li>
+    <li>Se esqueceu a senha, peça para a administradora resetar</li>
+  </ul>
+
+  <h3>Gráfico ou valores errados</h3>
+  <ul>
+    <li>Confira se todas as movimentações têm a <strong>categoria correta</strong></li>
+    <li>Verifique se o mês do seletor é o certo</li>
+  </ul>
+
+  <h3>Está lento</h3>
+  <ul>
+    <li>Se tiver mais de 5000 atendimentos, faça backup e arquive os antigos</li>
+    <li>Reinicie o iPhone</li>
+  </ul>
+</section>
+
+<!-- 14. SUPORTE -->
+<section id="suporte">
+  <h2>📞 14. Suporte</h2>
+
+  <p>Em caso de dúvidas ou problemas:</p>
+
+  <table>
+    <tr><th>Canal</th><th>Contato</th></tr>
+    <tr><td>👤 Administradora</td><td>Mikaela</td></tr>
+    <tr><td>📧 Email</td><td>admin@mikaela.com</td></tr>
+    <tr><td>💬 WhatsApp</td><td>(inserir número)</td></tr>
+  </table>
+
+  <div class="sucesso">
+    <strong>Obrigada por usar o Unhas Mikaela!</strong><br>
+    Espero que este sistema ajude a organizar o salão e fazer ele crescer cada vez mais. 💅✨
+  </div>
+
+  <div style="text-align:center; padding: 30px 0 10px; color: #999; font-size: 12px;">
+    <p>Unhas Mikaela — Sistema de Gestão Profissional</p>
+    <p>Versão 1.0 · 2026 · Todos os direitos reservados</p>
+  </div>
+</section>
+
+</div>
+
+<!-- BOTÃO PDF -->
+<button class="btn-pdf" onclick="window.print()">📄 Gerar PDF</button>
+
+<script>
+// Suaviza a rolagem entre seções
+document.querySelectorAll('.indice a').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const alvo = document.querySelector(link.getAttribute('href'));
+    if (alvo) alvo.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+</body>
+</html>

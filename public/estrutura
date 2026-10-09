@@ -7,3 +7,32 @@ unhas-mikaela/
 ├── loja/
 │   └── index.html         ← não mexe (fica igual)
 └── uploads/               ← não mexe
+
+┌─────────────────────────────────────────────┐
+│  📝 ATENDIMENTOS                             │
+├─────────────────────────────────────────────┤
+│  [➕ Novo]  [📅 Agendados]  [✅ Feitos]     │
+│                                              │
+│  Filtro por data: [____]                    │
+│                                              │
+│  ┌─────────────────────────────────────┐   │
+│  │ 🕐 14:30  Maria Silva      AGENDADO │   │
+│  │ Alongamento em gel                    │   │
+│  │ R$ 150,00                             │   │
+│  │ [✅ Compareceu] [❌ Faltou] [🗑️]    │   │
+│  └─────────────────────────────────────┘   │
+│                                              │
+│  ┌─────────────────────────────────────┐   │
+│  │ 🕐 11:00  Joana Costa   ✅ FEITO    │   │
+│  │ Esmaltação + decoração                │   │
+│  │ R$ 80,00 · Comissão: R$ 40,00        │   │
+│  │ [✏️ Editar] [🗑️]                    │   │
+│  └─────────────────────────────────────┘   │
+└─────────────────────────────────────────────┘
+
+📁 unhas-mikaela/
+├── index.html                    ← O app (100% offline)
+├── sw.js                         ← Service Worker (PWA)
+├── manual.html                   ← 📖 Manual interativo
+└── gerar-manual-pdf.html         ← 📄 Gerador de PDF (opcional)
+

@@ -13,19 +13,16 @@
     .cabecalho .usuario-box { display: flex; align-items: center; gap: 8px; font-size: 12px; }
     .cabecalho .usuario-box .avatar { width: 32px; height: 32px; border-radius: 50%; background: rgba(255,255,255,0.25); display: flex; align-items: center; justify-content: center; font-size: 16px; }
     .cabecalho .usuario-box button { background: rgba(255,255,255,0.2); border: none; color: white; padding: 6px 10px; border-radius: 6px; font-size: 12px; cursor: pointer; }
-    .cabecalho .usuario-box button:hover { background: rgba(255,255,255,0.35); }
 
     .tela-login { position: fixed; inset: 0; background: linear-gradient(135deg, #e91e63, #ad1457); display: flex; align-items: center; justify-content: center; padding: 20px; z-index: 1000; }
     .tela-login.oculta { display: none; }
-    .login-box { background: white; border-radius: 16px; padding: 32px 24px; width: 100%; max-width: 380px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); animation: sobe 0.4s ease; }
-    @keyframes sobe { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .login-box { background: white; border-radius: 16px; padding: 32px 24px; width: 100%; max-width: 380px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
     .login-box h1 { font-size: 24px; color: var(--rosa); text-align: center; margin-bottom: 6px; }
     .login-box .sub { text-align: center; color: #888; font-size: 13px; margin-bottom: 24px; }
     .login-box label { font-size: 13px; color: #555; font-weight: 600; display: block; margin-bottom: 4px; margin-top: 12px; }
     .login-box input { width: 100%; padding: 12px 14px; border: 1px solid #ddd; border-radius: 8px; font-size: 15px; background: #fafafa; }
     .login-box input:focus { outline: none; border-color: var(--rosa); background: white; }
     .login-box button { width: 100%; background: var(--rosa); color: white; border: none; padding: 14px; border-radius: 8px; font-size: 16px; font-weight: bold; margin-top: 20px; cursor: pointer; }
-    .login-box button:hover { background: #c2185b; }
     .login-erro { background: #ffebee; color: #c62828; padding: 10px; border-radius: 8px; font-size: 13px; text-align: center; margin-top: 12px; display: none; }
 
     .nav { position: fixed; bottom: 0; left: 0; right: 0; background: white; display: flex; justify-content: space-around; padding: 8px 0; box-shadow: 0 -2px 10px rgba(0,0,0,0.1); z-index: 100; overflow-x: auto; }
@@ -107,8 +104,7 @@
     .cargo-card .info .perm { font-size: 11px; color: #888; margin-top: 6px; font-family: monospace; background: #f0f0f0; padding: 3px 6px; border-radius: 4px; display: inline-block; }
 
     .mes-selector { display: flex; align-items: center; justify-content: space-between; background: #fafafa; border-radius: 10px; padding: 8px; margin-bottom: 16px; border: 1px solid #eee; }
-    .mes-btn { background: white; border: 1px solid #ddd; color: var(--rosa); width: 40px; height: 40px; border-radius: 50%; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.2s; }
-    .mes-btn:hover { background: var(--rosa); color: white; border-color: var(--rosa); }
+    .mes-btn { background: white; border: 1px solid #ddd; color: var(--rosa); width: 40px; height: 40px; border-radius: 50%; font-size: 16px; font-weight: bold; cursor: pointer; }
     .mes-atual { font-size: 16px; font-weight: bold; color: var(--escuro); text-transform: capitalize; }
 
     .resumo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
@@ -120,32 +116,30 @@
     .resumo-label { font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 0.5px; }
 
     .prof-card { background: white; border-radius: 10px; margin-bottom: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.06); overflow: hidden; border-left: 4px solid var(--rosa); }
-    .prof-card.rank-1 { border-left-color: #ffc107; background: linear-gradient(90deg, #fffbf0 0%, white 15%); }
+    .prof-card.rank-1 { border-left-color: #ffc107; }
     .prof-card.rank-2 { border-left-color: #b0bec5; }
     .prof-card.rank-3 { border-left-color: #d7a676; }
-    .prof-header { padding: 14px; display: flex; align-items: center; gap: 12px; cursor: pointer; transition: background 0.2s; }
-    .prof-header:hover { background: #fafafa; }
+    .prof-header { padding: 14px; display: flex; align-items: center; gap: 12px; cursor: pointer; }
     .rank-medal { width: 42px; height: 42px; border-radius: 50%; background: #f0f0f0; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: bold; flex-shrink: 0; }
-    .rank-medal.rank-1 { background: linear-gradient(135deg, #ffd54f, #ffb300); color: white; box-shadow: 0 3px 8px rgba(255,193,7,0.4); }
+    .rank-medal.rank-1 { background: linear-gradient(135deg, #ffd54f, #ffb300); color: white; }
     .rank-medal.rank-2 { background: linear-gradient(135deg, #cfd8dc, #90a4ae); color: white; }
     .rank-medal.rank-3 { background: linear-gradient(135deg, #e0b389, #a1887f); color: white; }
     .prof-info { flex: 1; min-width: 0; }
     .prof-info h4 { font-size: 15px; color: var(--escuro); margin-bottom: 3px; }
     .prof-info p { font-size: 12px; color: #777; }
-    .prof-valores { text-align: right; flex-shrink: 0; }
+    .prof-valores { text-align: right; }
     .prof-valores .fat { font-size: 13px; color: #666; }
     .prof-valores .com { font-size: 16px; font-weight: bold; color: var(--verde); }
     .prof-detalhes { display: none; padding: 12px 14px; background: #fafafa; border-top: 1px dashed #ddd; }
     .prof-card.aberto .prof-detalhes { display: block; }
-    .prof-detalhe-item { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #eee; font-size: 13px; gap: 8px; }
+    .prof-detalhe-item { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #eee; font-size: 13px; gap: 8px; }
     .prof-detalhe-item:last-child { border-bottom: none; }
-    .prof-detalhe-item .data { color: #888; font-size: 12px; flex-shrink: 0; }
-    .prof-detalhe-item .desc { flex: 1; color: var(--escuro); font-size: 12px; }
-    .prof-detalhe-item .valor { font-weight: bold; color: var(--rosa); flex-shrink: 0; font-size: 13px; }
+    .prof-detalhe-item .data { color: #888; font-size: 12px; }
+    .prof-detalhe-item .desc { flex: 1; font-size: 12px; }
+    .prof-detalhe-item .valor { font-weight: bold; color: var(--rosa); font-size: 13px; }
     .prof-detalhe-item .comissao { font-size: 11px; color: var(--verde); margin-left: 6px; }
     .perc-badge { display: inline-block; background: var(--verde); color: white; font-size: 10px; padding: 2px 6px; border-radius: 8px; font-weight: bold; margin-left: 6px; }
 
-    /* EDUCAÇÃO FINANCEIRA */
     .metodo-titulo { text-align: center; font-size: 14px; color: #666; margin-bottom: 12px; }
     .edu-resumo-grande { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
     .edu-bloco { background: #fafafa; border-radius: 12px; padding: 14px; text-align: center; border: 1px solid #eee; }
@@ -158,8 +152,10 @@
     .edu-economia { background: linear-gradient(135deg, #fff8e1, #ffecb3); border-radius: 12px; padding: 16px; text-align: center; border: 2px solid #ffd54f; }
     .edu-economia-valor { font-size: 26px; font-weight: bold; color: #e65100; margin: 6px 0; }
 
+    /* DONUT CORRIGIDO */
     .donut-wrap { display: flex; flex-direction: column; align-items: center; gap: 16px; }
-    .donut-svg { width: 200px; height: 200px; }
+    .donut-svg { width: 220px; height: 220px; overflow: visible; }
+    .donut-svg circle { transition: stroke-dasharray 0.5s ease, stroke-dashoffset 0.5s ease; }
     .donut-legenda { width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
     .legenda-item { display: flex; align-items: center; gap: 6px; font-size: 13px; padding: 8px; background: #fafafa; border-radius: 8px; }
     .legenda-item span:nth-child(2) { flex: 1; color: #555; }
@@ -183,8 +179,8 @@
     .grafico-barras { display: flex; align-items: flex-end; justify-content: space-between; height: 160px; gap: 6px; padding: 8px 0; }
     .barra-mes { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; height: 100%; justify-content: flex-end; }
     .barra-par { display: flex; gap: 3px; align-items: flex-end; height: 100%; }
-    .barra-ent { background: linear-gradient(180deg, #66bb6a, #4caf50); width: 14px; border-radius: 4px 4px 0 0; min-height: 2px; transition: 0.3s; }
-    .barra-sai { background: linear-gradient(180deg, #ef5350, #f44336); width: 14px; border-radius: 4px 4px 0 0; min-height: 2px; transition: 0.3s; }
+    .barra-ent { background: linear-gradient(180deg, #66bb6a, #4caf50); width: 14px; border-radius: 4px 4px 0 0; min-height: 2px; }
+    .barra-sai { background: linear-gradient(180deg, #ef5350, #f44336); width: 14px; border-radius: 4px 4px 0 0; min-height: 2px; }
     .barra-mes-label { font-size: 10px; color: #888; font-weight: bold; }
     .barra-mes.ativo .barra-mes-label { color: var(--rosa); }
     .grafico-legenda { display: flex; justify-content: center; gap: 20px; margin-top: 12px; font-size: 12px; color: #666; }
@@ -197,13 +193,44 @@
 
     .modal-fundo { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 200; align-items: center; justify-content: center; padding: 16px; }
     .modal-fundo.aberto { display: flex; }
-    .modal-card { background: white; border-radius: 16px; padding: 22px; width: 100%; max-width: 400px; max-height: 90vh; overflow-y: auto; animation: sobe 0.3s ease; }
+    .modal-card { background: white; border-radius: 16px; padding: 22px; width: 100%; max-width: 400px; max-height: 90vh; overflow-y: auto; }
     .modal-card h3 { font-size: 18px; color: var(--escuro); margin-bottom: 16px; }
     .modal-card label { font-size: 13px; color: #555; font-weight: 600; display: block; margin-bottom: 4px; margin-top: 12px; }
-    .modal-card input { width: 100%; padding: 10px 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 15px; }
+    .modal-card input, .modal-card select, .modal-card textarea { width: 100%; padding: 10px 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 15px; }
     .soma-aviso { padding: 10px; border-radius: 8px; font-size: 13px; margin-top: 8px; text-align: center; }
     .soma-ok { background: #e8f5e9; color: #2e7d32; }
     .soma-erro { background: #ffebee; color: #c62828; }
+
+    /* ATENDIMENTOS UNIFICADOS */
+    .filtro-abas { display: flex; gap: 6px; margin-bottom: 12px; overflow-x: auto; padding-bottom: 4px; }
+    .filtro-aba { background: white; border: 1px solid #ddd; padding: 8px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; color: #666; cursor: pointer; white-space: nowrap; }
+    .filtro-aba.ativo { background: var(--rosa); color: white; border-color: var(--rosa); }
+    .filtro-aba .contador { background: rgba(0,0,0,0.1); border-radius: 10px; padding: 1px 6px; font-size: 11px; margin-left: 4px; }
+    .filtro-aba.ativo .contador { background: rgba(255,255,255,0.25); }
+
+    .atend-card { background: white; border-radius: 10px; padding: 14px; margin-bottom: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.06); border-left: 4px solid #ddd; }
+    .atend-card.status-agendado { border-left-color: var(--azul); }
+    .atend-card.status-feito { border-left-color: var(--verde); }
+    .atend-card.status-faltou { border-left-color: var(--vermelho); opacity: 0.85; }
+
+    .atend-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+    .atend-header h4 { font-size: 15px; color: var(--escuro); }
+    .atend-horario { font-size: 14px; font-weight: bold; color: var(--rosa); }
+    .atend-info { font-size: 13px; color: #666; margin: 2px 0; }
+    .atend-info strong { color: var(--escuro); }
+    .atend-valor { font-size: 16px; font-weight: bold; color: var(--rosa); margin-top: 6px; }
+    .atend-comissao { font-size: 12px; color: var(--verde); margin-top: 2px; }
+    .atend-acoes { display: flex; gap: 6px; margin-top: 10px; flex-wrap: wrap; }
+    .atend-acoes button { flex: 1; min-width: 80px; }
+
+    .tag-status { font-size: 10px; padding: 3px 8px; border-radius: 12px; font-weight: bold; text-transform: uppercase; }
+    .tag-agendado { background: #e3f2fd; color: #1565c0; }
+    .tag-feito { background: #e8f5e9; color: #2e7d32; }
+    .tag-faltou { background: #ffebee; color: #c62828; }
+
+    .filtro-data-box { display: flex; gap: 8px; margin-bottom: 12px; align-items: center; }
+    .filtro-data-box input { margin: 0; flex: 1; }
+    .filtro-data-box button { margin: 0; }
 </style>
 </head>
 <body>
@@ -214,12 +241,11 @@
         <h1>💅 Unhas Mikaela</h1>
         <p class="sub">Sistema de Gestão Profissional</p>
         <label>Email</label>
-        <input type="email" id="loginEmail" placeholder="seu@email.com" autocomplete="email">
+        <input type="email" id="loginEmail" placeholder="seu@email.com">
         <label>Senha</label>
-        <input type="password" id="loginSenha" placeholder="••••••••" autocomplete="current-password" onkeypress="if(event.key==='Enter')fazerLogin()">
-        <button onclick="fazerLogin()">🔓 Entrar no Sistema</button>
+        <input type="password" id="loginSenha" placeholder="••••••••" onkeypress="if(event.key==='Enter')fazerLogin()">
+        <button onclick="fazerLogin()">🔓 Entrar</button>
         <div class="login-erro" id="loginErro"></div>
-        <p style="text-align:center;font-size:11px;color:#aaa;margin-top:16px;">Acesso restrito · Contate a administradora</p>
     </div>
 </div>
 
@@ -254,10 +280,9 @@
                 <input type="text" id="movDescricao" placeholder="Descrição">
                 <input type="number" step="0.01" id="movValor" placeholder="Valor R$">
                 <select id="movCategoria">
-                    <option value="Essencial">🏠 Essencial (50%)</option>
-                    <option value="Desejo">🎉 Desejo (30%)</option>
-                    <option value="Investimento">📈 Investimento (20%)</option>
-                    <option value="Outros" selected>📌 Outros</option>
+                    <option value="Essencial">🏠 Essencial</option>
+                    <option value="Desejo">🎉 Desejo</option>
+                    <option value="Investimento">📈 Investimento</option>
                 </select>
                 <div class="linha">
                     <button class="btn btn-sucesso" onclick="registrarMovimentacao('entrada')">⬆️ Entrada</button>
@@ -265,6 +290,10 @@
                 </div>
                 <br>
                 <button class="btn btn-perigo" style="width:100%" onclick="fecharCaixa()" id="btnFecharCaixa">🔒 Fechar Caixa</button>
+                <div class="linha" style="margin-top:8px;">
+                    <button class="btn btn-azul btn-menor" onclick="exportarCaixaHoje()">📥 Exportar Dia</button>
+                    <button class="btn btn-azul btn-menor" onclick="exportarHistoricoCaixa()">📥 Exportar Histórico</button>
+                </div>
                 <div class="divisor"></div>
                 <h3 style="font-size:15px; margin-bottom:8px;">📋 Movimentações de Hoje</h3>
                 <div id="listaMovimentacoes"></div>
@@ -316,27 +345,21 @@
                 <input type="number" step="0.01" id="prodCusto" placeholder="💸 Compra R$" oninput="calcLucro()">
                 <input type="number" step="0.01" id="prodPreco" placeholder="💰 Venda R$" oninput="calcLucro()">
             </div>
-            <div class="prod-lucro-box">
-                📈 Lucro: <strong id="prodLucro" style="color:var(--verde)">R$ 0,00</strong>
-                <span id="prodMargem" style="color:#666;margin-left:8px"></span>
-            </div>
+            <div class="prod-lucro-box">📈 Lucro: <strong id="prodLucro" style="color:var(--verde)">R$ 0,00</strong><span id="prodMargem" style="color:#666;margin-left:8px"></span></div>
             <div class="linha-2">
                 <input type="number" id="prodQuantidade" placeholder="📊 Estoque atual">
                 <input type="number" id="prodMinimo" placeholder="⚠️ Estoque mínimo">
             </div>
             <input type="number" id="prodMaximo" placeholder="📈 Estoque máximo">
-            <label style="font-size:13px;color:#666;display:block;margin-top:8px;">📸 Foto do produto</label>
+            <label style="font-size:13px;color:#666;display:block;margin-top:8px;">📸 Foto</label>
             <input type="file" id="prodFotoFile" accept="image/*" onchange="previewFoto(event)">
             <input type="hidden" id="prodFoto">
-            <div id="previewFotoBox" style="display:none;">
-                <img id="previewFotoImg" class="prod-foto-preview">
-            </div>
+            <div id="previewFotoBox" style="display:none;"><img id="previewFotoImg" class="prod-foto-preview"></div>
             <label style="display:flex;align-items:center;gap:8px;font-size:14px;margin-bottom:12px;margin-top:8px;">
-                <input type="checkbox" id="prodPublicar" checked style="width:auto;margin:0">
-                🛍️ Publicar na Loja Online
+                <input type="checkbox" id="prodPublicar" checked style="width:auto;margin:0"> 🛍️ Publicar na Loja
             </label>
             <button class="btn btn-primario" onclick="salvarProduto()">✅ Salvar Produto</button>
-            <button class="btn" style="width:100%;background:#eee;color:#333;margin-top:6px;" onclick="limparFormProduto()">✖️ Limpar formulário</button>
+            <button class="btn" style="width:100%;background:#eee;color:#333;margin-top:6px;" onclick="limparFormProduto()">✖️ Limpar</button>
         </div>
         <div class="card">
             <h2>📊 Estoque</h2>
@@ -345,31 +368,25 @@
         </div>
     </section>
 
-    <!-- ATENDIMENTOS -->
+    <!-- ATENDIMENTOS UNIFICADOS -->
     <section id="secao-atendimentos" class="secao">
         <div class="card">
-            <h2>📝 Novo Atendimento</h2>
-            <select id="atendCliente"><option value="">-- Selecione o Cliente --</option></select>
-            <div class="linha-2">
-                <input type="date" id="atendData">
-                <input type="time" id="atendHora">
+            <h2>📝 Atendimentos & Agendamentos</h2>
+            <button class="btn btn-primario" onclick="abrirNovoAtendimento()" style="margin-bottom:12px;">➕ Novo Atendimento / Agendamento</button>
+
+            <div class="filtro-data-box">
+                <input type="date" id="filtroData" onchange="carregarAtendimentos()">
+                <button class="btn btn-azul btn-menor" onclick="limparFiltroData()">Todas</button>
             </div>
-            <textarea id="atendServicos" placeholder="Serviços realizados / Detalhes" rows="3"></textarea>
-            <input type="number" step="0.01" id="atendValor" placeholder="Valor total R$">
-            <select id="atendPagamento">
-                <option value="Dinheiro">Dinheiro</option>
-                <option value="Pix">Pix</option>
-                <option value="Cartão Crédito">Cartão Crédito</option>
-                <option value="Cartão Débito">Cartão Débito</option>
-                <option value="A Prazo">A Prazo</option>
-            </select>
-            <div class="dica" id="avisoComissao" style="background:#e3f2fd;border-left:4px solid #2196f3;padding:10px;border-radius:4px;font-size:13px;color:#1565c0;margin-top:12px;">💡 Sua comissão será calculada automaticamente</div>
-            <button class="btn btn-primario" onclick="registrarAtendimento()" style="margin-top:12px;">✅ Registrar Atendimento</button>
+
+            <div class="filtro-abas" id="filtroAbas">
+                <div class="filtro-aba ativo" data-filtro="todos" onclick="setFiltroAtend('todos', this)">Todos <span class="contador" id="contTodos">0</span></div>
+                <div class="filtro-aba" data-filtro="agendado" onclick="setFiltroAtend('agendado', this)">📅 Agendados <span class="contador" id="contAgendado">0</span></div>
+                <div class="filtro-aba" data-filtro="feito" onclick="setFiltroAtend('feito', this)">✅ Feitos <span class="contador" id="contFeito">0</span></div>
+                <div class="filtro-aba" data-filtro="faltou" onclick="setFiltroAtend('faltou', this)">❌ Faltas <span class="contador" id="contFaltou">0</span></div>
+            </div>
         </div>
-        <div class="card">
-            <h2>📋 Histórico</h2>
-            <div id="listaAtendimentos"><p class="vazio">Nenhum atendimento registrado</p></div>
-        </div>
+        <div id="listaAtendimentos"></div>
     </section>
 
     <!-- PEDIDOS -->
@@ -402,7 +419,7 @@
                 <option value="pleno">✨ Manicure Pleno</option>
                 <option value="master">⭐ Nail Designer Master</option>
                 <option value="podologa">🦶 Podóloga</option>
-                <option value="lider">💅 Manicure Líder / Supervisora</option>
+                <option value="lider">💅 Manicure Líder</option>
                 <option value="admin">👑 Administradora</option>
             </select>
             <button class="btn btn-primario" onclick="salvarUsuario()">✅ Salvar</button>
@@ -410,13 +427,13 @@
         </div>
         <div class="card">
             <h2>📖 Níveis de Carreira</h2>
-            <div class="cargo-card nivel-5"><div class="icone">👑</div><div class="info"><h4>Administradora (Nível 5)</h4><p>Acesso total. Gerencia usuários, finanças, relatórios, loja online e configurações.</p><span class="perm">🔓 TUDO</span></div></div>
-            <div class="cargo-card nivel-4"><div class="icone">💅</div><div class="info"><h4>Manicure Líder / Supervisora (Nível 4)</h4><p>Profissional sênior. Avalia qualidade, treina novatas, controla estoque e garante normas da Anvisa.</p><span class="perm">🔓 caixa · clientes · estoque · atendimentos · relatórios · loja</span></div></div>
-            <div class="cargo-card nivel-4"><div class="icone">🦶</div><div class="info"><h4>Podóloga (Nível 4)</h4><p>Formação técnica/superior. Trata unhas encravadas, calosidades severas, rachaduras e pé diabético.</p><span class="perm">🔓 atendimentos avançados · relatórios</span></div></div>
-            <div class="cargo-card nivel-3"><div class="icone">⭐</div><div class="info"><h4>Nail Designer / Manicure Master (Nível 3)</h4><p>Alongamentos (gel, acrigel, fibra, porcelana), nail art encapsulada, formatos especiais.</p><span class="perm">🔓 atendimentos · estoque · clientes · pedidos · ver todos</span></div></div>
-            <div class="cargo-card nivel-2"><div class="icone">✨</div><div class="info"><h4>Manicure Pleno (Nível 2)</h4><p>Decorações simples, unhas postiças, SPA dos pés e mãos. Carteira de clientes fiel.</p><span class="perm">🔓 atendimentos próprios · abrir caixa · cadastro de clientes</span></div></div>
-            <div class="cargo-card nivel-1"><div class="icone">🌱</div><div class="info"><h4>Manicure Júnior (Nível 1)</h4><p>Cuticagem, esmaltação tradicional, cuidados básicos. Atende fluxo diário.</p><span class="perm">🔓 apenas seus próprios atendimentos</span></div></div>
-            <div class="cargo-card nivel-0"><div class="icone">🌿</div><div class="info"><h4>Auxiliar / Iniciante (Nível 0)</h4><p>Em treinamento. Auxilia na preparação, higienização e organização.</p><span class="perm">🔓 apenas seus próprios atendimentos</span></div></div>
+            <div class="cargo-card nivel-5"><div class="icone">👑</div><div class="info"><h4>Administradora</h4><p>Acesso total.</p></div></div>
+            <div class="cargo-card nivel-4"><div class="icone">💅</div><div class="info"><h4>Manicure Líder</h4><p>Supervisão, treinamento, estoque.</p></div></div>
+            <div class="cargo-card nivel-4"><div class="icone">🦶</div><div class="info"><h4>Podóloga</h4><p>Cuidados avançados dos pés.</p></div></div>
+            <div class="cargo-card nivel-3"><div class="icone">⭐</div><div class="info"><h4>Nail Designer Master</h4><p>Alongamentos, nail art avançada.</p></div></div>
+            <div class="cargo-card nivel-2"><div class="icone">✨</div><div class="info"><h4>Manicure Pleno</h4><p>Decorações, unhas postiças, SPA.</p></div></div>
+            <div class="cargo-card nivel-1"><div class="icone">🌱</div><div class="info"><h4>Manicure Júnior</h4><p>Cuticagem, esmaltação.</p></div></div>
+            <div class="cargo-card nivel-0"><div class="icone">🌿</div><div class="info"><h4>Auxiliar</h4><p>Em treinamento.</p></div></div>
         </div>
     </section>
 
@@ -435,10 +452,10 @@
                 <div class="resumo-item"><div class="resumo-icone">📅</div><div class="resumo-valor" id="relTotalAtend">0</div><div class="resumo-label">Atendimentos</div></div>
                 <div class="resumo-item"><div class="resumo-icone">🎯</div><div class="resumo-valor" id="relTicket">R$ 0,00</div><div class="resumo-label">Ticket médio</div></div>
             </div>
-            <button class="btn btn-sucesso" style="width:100%;margin-bottom:14px;" onclick="exportarCSV()">📥 Exportar CSV (Excel)</button>
+            <button class="btn btn-sucesso" style="width:100%;" onclick="exportarCSV()">📥 Exportar CSV</button>
         </div>
         <div class="card">
-            <h2>🏆 Ranking do Mês</h2>
+            <h2>🏆 Ranking</h2>
             <div id="listaRelatorio"><p class="vazio">Nenhum atendimento neste mês</p></div>
         </div>
     </section>
@@ -454,16 +471,8 @@
             <h2 style="margin-bottom:8px;">🎓 Educação Financeira</h2>
             <p class="metodo-titulo" id="eduMetodoLabel">Método 50/30/20</p>
             <div class="edu-resumo-grande">
-                <div class="edu-bloco">
-                    <div class="edu-bloco-label">💵 Entradas</div>
-                    <div class="edu-bloco-valor" id="eduEntradas" style="color:var(--verde)">R$ 0,00</div>
-                    <div class="edu-var" id="eduVarEntradas">—</div>
-                </div>
-                <div class="edu-bloco">
-                    <div class="edu-bloco-label">💸 Saídas</div>
-                    <div class="edu-bloco-valor" id="eduSaidas" style="color:var(--vermelho)">R$ 0,00</div>
-                    <div class="edu-var" id="eduVarSaidas">—</div>
-                </div>
+                <div class="edu-bloco"><div class="edu-bloco-label">💵 Entradas</div><div class="edu-bloco-valor" id="eduEntradas" style="color:var(--verde)">R$ 0,00</div><div class="edu-var" id="eduVarEntradas">—</div></div>
+                <div class="edu-bloco"><div class="edu-bloco-label">💸 Saídas</div><div class="edu-bloco-valor" id="eduSaidas" style="color:var(--vermelho)">R$ 0,00</div><div class="edu-var" id="eduVarSaidas">—</div></div>
             </div>
             <div class="edu-economia" id="eduEconomiaBox">
                 <div style="font-size:12px;color:#666;">💰 Economia do mês</div>
@@ -475,18 +484,14 @@
         <div class="card">
             <h2>📊 Distribuição por Categoria</h2>
             <div class="donut-wrap">
-                <svg viewBox="0 0 200 200" class="donut-svg">
-                    <circle cx="100" cy="100" r="70" fill="none" stroke="#f0f0f0" stroke-width="28"/>
-                    <circle id="donutEssencial" cx="100" cy="100" r="70" fill="none" stroke="#4caf50" stroke-width="28"
-                            stroke-dasharray="0 440" stroke-dashoffset="0" transform="rotate(-90 100 100)"/>
-                    <circle id="donutDesejo" cx="100" cy="100" r="70" fill="none" stroke="#2196f3" stroke-width="28"
-                            stroke-dasharray="0 440" stroke-dashoffset="0" transform="rotate(-90 100 100)"/>
-                    <circle id="donutInvestimento" cx="100" cy="100" r="70" fill="none" stroke="#9c27b0" stroke-width="28"
-                            stroke-dasharray="0 440" stroke-dashoffset="0" transform="rotate(-90 100 100)"/>
-                    <circle id="donutOutros" cx="100" cy="100" r="70" fill="none" stroke="#bbb" stroke-width="28"
-                            stroke-dasharray="0 440" stroke-dashoffset="0" transform="rotate(-90 100 100)"/>
-                    <text x="100" y="95" text-anchor="middle" font-size="11" fill="#888">Total gasto</text>
-                    <text x="100" y="115" text-anchor="middle" font-size="15" font-weight="bold" fill="#333" id="donutTotal">R$ 0</text>
+                <svg viewBox="0 0 200 200" class="donut-svg" id="donutSvg">
+                    <circle cx="100" cy="100" r="70" fill="none" stroke="#f0f0f0" stroke-width="26"/>
+                    <circle id="donutEssencial" cx="100" cy="100" r="70" fill="none" stroke="#4caf50" stroke-width="26" stroke-dasharray="0 440" stroke-dashoffset="0" transform="rotate(-90 100 100)" stroke-linecap="butt"/>
+                    <circle id="donutDesejo" cx="100" cy="100" r="70" fill="none" stroke="#2196f3" stroke-width="26" stroke-dasharray="0 440" stroke-dashoffset="0" transform="rotate(-90 100 100)" stroke-linecap="butt"/>
+                    <circle id="donutInvestimento" cx="100" cy="100" r="70" fill="none" stroke="#9c27b0" stroke-width="26" stroke-dasharray="0 440" stroke-dashoffset="0" transform="rotate(-90 100 100)" stroke-linecap="butt"/>
+                    <circle id="donutOutros" cx="100" cy="100" r="70" fill="none" stroke="#bbb" stroke-width="26" stroke-dasharray="0 440" stroke-dashoffset="0" transform="rotate(-90 100 100)" stroke-linecap="butt"/>
+                    <text x="100" y="95" text-anchor="middle" font-size="10" fill="#888">Total gasto</text>
+                    <text x="100" y="115" text-anchor="middle" font-size="14" font-weight="bold" fill="#333" id="donutTotal">R$ 0</text>
                 </svg>
                 <div class="donut-legenda">
                     <div class="legenda-item"><span class="legenda-cor" style="background:#4caf50"></span><span>Essencial</span><strong id="legEssencial">R$ 0</strong></div>
@@ -502,43 +507,34 @@
             <div class="barra-wrap">
                 <div class="barra-label"><span>🏠 Essencial (<span id="eduPctEss">50</span>%)</span><span id="txtEssencial">R$ 0 / R$ 0</span></div>
                 <div class="barra-bg"><div class="barra-fill barra-50" id="barraEssencial" style="width:0%">0%</div></div>
-                <p class="meta-info">Aluguel, água, luz, internet, mercado, material de trabalho</p>
             </div>
             <div class="barra-wrap">
                 <div class="barra-label"><span>🎉 Desejo (<span id="eduPctDes">30</span>%)</span><span id="txtDesejo">R$ 0 / R$ 0</span></div>
                 <div class="barra-bg"><div class="barra-fill barra-30" id="barraDesejo" style="width:0%">0%</div></div>
-                <p class="meta-info">Delivery, roupa, salão, streaming, passeio, presente</p>
             </div>
             <div class="barra-wrap">
                 <div class="barra-label"><span>📈 Investimento (<span id="eduPctInv">20</span>%)</span><span id="txtInvestimento">R$ 0 / R$ 0</span></div>
                 <div class="barra-bg"><div class="barra-fill barra-20" id="barraInvestimento" style="width:0%">0%</div></div>
-                <p class="meta-info">Poupança, reserva, curso, ferramenta nova, investimento</p>
             </div>
-            <button class="btn btn-azul" style="width:100%;margin-top:8px;" onclick="abrirConfigMetas()">⚙️ Personalizar Metas</button>
+            <button class="btn btn-azul" style="width:100%;" onclick="abrirConfigMetas()">⚙️ Personalizar Metas</button>
         </div>
 
         <div class="card">
             <h2>🛡️ Reserva de Emergência</h2>
             <div class="reserva-box">
                 <div class="reserva-valores">
-                    <div>
-                        <div style="font-size:11px;color:#888;">Guardado</div>
-                        <div class="reserva-valor" id="eduReservaAtual">R$ 0,00</div>
-                    </div>
-                    <div style="text-align:right">
-                        <div style="font-size:11px;color:#888;">Meta</div>
-                        <div class="reserva-valor" id="eduReservaMeta" style="color:#888">R$ 0,00</div>
-                    </div>
+                    <div><div style="font-size:11px;color:#888;">Guardado</div><div class="reserva-valor" id="eduReservaAtual">R$ 0,00</div></div>
+                    <div style="text-align:right"><div style="font-size:11px;color:#888;">Meta</div><div class="reserva-valor" id="eduReservaMeta" style="color:#888">R$ 0,00</div></div>
                 </div>
                 <div class="barra-bg" style="margin-top:10px;height:18px;">
                     <div class="barra-fill" style="background:linear-gradient(90deg,#ff9800,#ffb74d);width:0%" id="eduReservaBarra">0%</div>
                 </div>
-                <p class="meta-info" id="eduReservaInfo" style="margin-top:8px;">—</p>
+                <p class="meta-info" id="eduReservaInfo">—</p>
             </div>
         </div>
 
         <div class="card">
-            <h2>📈 Evolução (últimos 6 meses)</h2>
+            <h2>📈 Evolução (6 meses)</h2>
             <div class="grafico-barras" id="eduGrafico"><p class="vazio">Carregando...</p></div>
             <div class="grafico-legenda">
                 <span><span class="legenda-cor" style="background:#4caf50"></span> Entradas</span>
@@ -565,34 +561,100 @@
     </nav>
 </div>
 
+<!-- MODAL: Novo Atendimento / Agendamento -->
+<div class="modal-fundo" id="modalAtend">
+    <div class="modal-card">
+        <h3 id="modalAtendTitulo">➕ Novo Atendimento</h3>
+        <label>Tipo</label>
+        <select id="atendTipo" onchange="mudarTipoAtend()">
+            <option value="agendado">📅 Agendar (para o futuro)</option>
+            <option value="feito">✅ Já foi feito (atendimento direto)</option>
+        </select>
+        <label>Cliente</label>
+        <select id="atendCliente"><option value="">-- Selecione --</option></select>
+        <label>Data</label>
+        <input type="date" id="atendData">
+        <label>Hora</label>
+        <input type="time" id="atendHora">
+        <label>Serviço</label>
+        <textarea id="atendServicos" rows="2" placeholder="Ex: Alongamento em gel"></textarea>
+
+        <div id="camposAgendado">
+            <label>Valor previsto (R$)</label>
+            <input type="number" step="0.01" id="atendValorPrev" placeholder="0.00">
+            <label>Taxa se não comparecer (%)</label>
+            <input type="number" id="atendTaxa" value="30" min="0" max="100">
+        </div>
+
+        <div id="camposFeito" style="display:none">
+            <label>Valor cobrado (R$)</label>
+            <input type="number" step="0.01" id="atendValor" placeholder="0.00">
+            <label>Forma de pagamento</label>
+            <select id="atendPagamento">
+                <option value="Dinheiro">Dinheiro</option>
+                <option value="Pix">Pix</option>
+                <option value="Cartão Crédito">Cartão Crédito</option>
+                <option value="Cartão Débito">Cartão Débito</option>
+                <option value="A Prazo">A Prazo</option>
+            </select>
+        </div>
+
+        <div class="dica" id="avisoComissao" style="background:#e3f2fd;border-left:4px solid #2196f3;padding:10px;border-radius:4px;font-size:13px;color:#1565c0;margin-top:12px;">💡 Sua comissão será calculada automaticamente</div>
+        <button class="btn btn-primario" style="margin-top:12px;" onclick="salvarAtendimento()">💾 Salvar</button>
+        <button class="btn" style="width:100%;background:#eee;color:#333;margin-top:6px;" onclick="fecharModalAtend()">✖️ Cancelar</button>
+    </div>
+</div>
+
+<!-- MODAL: Confirmar Compareceu -->
+<div class="modal-fundo" id="modalCompareceu">
+    <div class="modal-card">
+        <h3>✅ Confirmar Comparecimento</h3>
+        <input type="hidden" id="compId">
+        <label>Valor cobrado (R$)</label>
+        <input type="number" step="0.01" id="compValor">
+        <label>Forma de pagamento</label>
+        <select id="compPagamento">
+            <option value="Dinheiro">Dinheiro</option>
+            <option value="Pix">Pix</option>
+            <option value="Cartão Crédito">Cartão Crédito</option>
+            <option value="Cartão Débito">Cartão Débito</option>
+            <option value="A Prazo">A Prazo</option>
+        </select>
+        <button class="btn btn-sucesso" style="width:100%;margin-top:12px;" onclick="confirmarCompareceu()">✅ Confirmar</button>
+        <button class="btn" style="width:100%;background:#eee;color:#333;margin-top:6px;" onclick="document.getElementById('modalCompareceu').classList.remove('aberto')">✖️ Cancelar</button>
+    </div>
+</div>
+
 <!-- MODAL: Configurar Metas -->
 <div class="modal-fundo" id="modalMetas">
     <div class="modal-card">
         <h3>⚙️ Personalizar Metas</h3>
-        <label>% Essencial (moradia, contas, material)</label>
+        <label>% Essencial</label>
         <input type="number" id="cfgEssencial" min="0" max="100" step="1" oninput="somaPct()">
-        <label>% Desejo (lazer, delivery, salão)</label>
+        <label>% Desejo</label>
         <input type="number" id="cfgDesejo" min="0" max="100" step="1" oninput="somaPct()">
-        <label>% Investimento (poupança, reserva)</label>
+        <label>% Investimento</label>
         <input type="number" id="cfgInvestimento" min="0" max="100" step="1" oninput="somaPct()">
         <div class="soma-aviso" id="cfgSoma">Total: 100%</div>
         <div class="divisor"></div>
         <label>💰 Meta de economia mensal (R$)</label>
-        <input type="number" id="cfgMetaEconomia" step="0.01" placeholder="Ex: 500.00">
+        <input type="number" id="cfgMetaEconomia" step="0.01">
         <label>🛡️ Reserva atual (R$)</label>
-        <input type="number" id="cfgReservaAtual" step="0.01" placeholder="Ex: 1200.00">
+        <input type="number" id="cfgReservaAtual" step="0.01">
         <label>🎯 Meta da reserva (R$)</label>
-        <input type="number" id="cfgReservaMeta" step="0.01" placeholder="Ex: 5000.00">
+        <input type="number" id="cfgReservaMeta" step="0.01">
         <button class="btn btn-primario" style="margin-top:16px;" onclick="salvarConfigMetas()">💾 Salvar</button>
         <button class="btn" style="width:100%;background:#eee;color:#333;margin-top:6px;" onclick="fecharConfigMetas()">✖️ Cancelar</button>
     </div>
 </div>
 
 <script>
-console.log("🚀 Script carregado");
 const API = '/api';
 let usuarioLogado = null;
 let caixaAtual = null;
+let atendimentosCache = [];
+let filtroAtendAtual = 'todos';
+let filtroDataAtual = '';
 
 async function apiGet(url) {
   const r = await fetch(API + url, { credentials: 'include' });
@@ -604,14 +666,14 @@ async function apiPost(url, dados) {
   const r = await fetch(API + url, { method:'POST', credentials:'include', headers:{'Content-Type':'application/json'}, body: JSON.stringify(dados) });
   if (r.status === 401) { mostrarLogin(); throw new Error('Não autenticado'); }
   if (r.status === 403) { const e = await r.json(); alert('🚫 ' + e.erro); throw new Error(e.erro); }
-  if (!r.ok) throw new Error('Erro ' + r.status);
+  if (!r.ok) { const e = await r.json().catch(()=>({})); throw new Error(e.erro || 'Erro ' + r.status); }
   return r.json();
 }
 async function apiPut(url, dados) {
   const r = await fetch(API + url, { method:'PUT', credentials:'include', headers:{'Content-Type':'application/json'}, body: JSON.stringify(dados) });
   if (r.status === 401) { mostrarLogin(); throw new Error('Não autenticado'); }
   if (r.status === 403) { const e = await r.json(); alert('🚫 ' + e.erro); throw new Error(e.erro); }
-  if (!r.ok) throw new Error('Erro ' + r.status);
+  if (!r.ok) { const e = await r.json().catch(()=>({})); throw new Error(e.erro || 'Erro ' + r.status); }
   return r.json();
 }
 async function apiDelete(url) {
@@ -707,7 +769,7 @@ function mostrarSecao(nome, botao) {
   botao.classList.add('ativo');
   if (nome === 'clientes') carregarClientes();
   if (nome === 'produtos') carregarProdutos();
-  if (nome === 'atendimentos') { carregarClientesSelect(); carregarAtendimentos(); }
+  if (nome === 'atendimentos') carregarAtendimentos();
   if (nome === 'caixa') { verificarCaixaAberto(); carregarHistoricoCaixa(); }
   if (nome === 'pedidos') carregarPedidos();
   if (nome === 'equipe') carregarEquipe();
@@ -715,7 +777,9 @@ function mostrarSecao(nome, botao) {
   if (nome === 'educacao') carregarEducacaoFinanceira();
 }
 
+// ==========================================
 // CAIXA
+// ==========================================
 async function verificarCaixaAberto() {
   try {
     caixaAtual = await apiGet('/caixa/hoje');
@@ -761,15 +825,16 @@ async function registrarMovimentacao(tipo) {
   await apiPost('/movimentacoes', { caixa_id: caixaAtual.id, descricao, valor, tipo, categoria });
   document.getElementById('movDescricao').value = '';
   document.getElementById('movValor').value = '';
-  document.getElementById('movCategoria').value = 'Outros';
+  document.getElementById('movCategoria').value = 'Essencial';
   atualizarSaldoCaixa();
   carregarMovimentacoes();
 }
 
 async function atualizarSaldoCaixa() {
   const movs = await apiGet(`/movimentacoes/${caixaAtual.id}`);
-  const entradas = movs.filter(m => m.tipo === 'entrada').reduce((s, m) => s + m.valor, 0);
-  const saidas = movs.filter(m => m.tipo === 'saida').reduce((s, m) => s + m.valor, 0);
+  const ativas = movs.filter(m => !m.estornada);
+  const entradas = ativas.filter(m => m.tipo === 'entrada').reduce((s, m) => s + m.valor, 0);
+  const saidas = ativas.filter(m => m.tipo === 'saida').reduce((s, m) => s + m.valor, 0);
   document.getElementById('saldoInicial').textContent = formatarDinheiro(caixaAtual.valor_inicial);
   document.getElementById('totalEntradas').textContent = formatarDinheiro(entradas);
   document.getElementById('totalSaidas').textContent = formatarDinheiro(saidas);
@@ -781,14 +846,23 @@ async function carregarMovimentacoes() {
   const el = document.getElementById('listaMovimentacoes');
   if (!movs.length) { el.innerHTML = '<p class="vazio">Sem movimentações ainda</p>'; return; }
   const cores = { Essencial:'#4caf50', Desejo:'#2196f3', Investimento:'#9c27b0', Outros:'#888' };
+  const podeEdit = temPermissao('caixa_fechar');
   el.innerHTML = movs.map(m => `
-    <div class="item-lista">
+    <div class="item-lista" style="${m.estornada ? 'opacity:0.5;text-decoration:line-through;' : ''}">
       <div class="item-info">
-        <h4>${m.tipo === 'entrada' ? '⬆️' : '⬇️'} ${m.descricao}</h4>
-        <p>${m.hora} · <span class="badge" style="background:${cores[m.categoria] || '#888'};color:white">${m.categoria || 'Outros'}</span>${m.usuario_nome ? ' · '+m.usuario_nome : ''}</p>
+        <h4>${m.tipo === 'entrada' ? '⬆️' : '⬇️'} ${m.descricao}${m.estornada ? ' (ESTORNADA)' : ''}</h4>
+        <p>${m.hora} · <span class="badge" style="background:${cores[m.categoria] || '#888'};color:white">${m.categoria || '-'}</span>${m.usuario_nome ? ' · '+m.usuario_nome : ''}</p>
       </div>
-      <div style="font-weight:bold; color: ${m.tipo === 'entrada' ? '#4caf50' : '#f44336'}">
-        ${m.tipo === 'entrada' ? '+' : '-'}${formatarDinheiro(m.valor)}
+      <div style="text-align:right">
+        <div style="font-weight:bold; color: ${m.tipo === 'entrada' ? '#4caf50' : '#f44336'}">
+          ${m.tipo === 'entrada' ? '+' : '-'}${formatarDinheiro(m.valor)}
+        </div>
+        ${podeEdit && !m.estornada ? `
+        <div class="item-acoes" style="margin-top:4px;justify-content:flex-end">
+          <button class="btn btn-azul btn-menor" onclick="editarMovimentacao(${m.id})">✏️</button>
+          <button class="btn btn-perigo btn-menor" onclick="estornarMovimentacao(${m.id})">↩️</button>
+          <button class="btn btn-perigo btn-menor" onclick="excluirMovimentacao(${m.id})">🗑️</button>
+        </div>` : ''}
       </div>
     </div>`).join('');
 }
@@ -805,19 +879,52 @@ async function carregarHistoricoCaixa() {
       return `
         <div class="historico-card">
           <div class="data-titulo"><span>📅 ${dataFmt}</span>${badge}</div>
-          ${cx.usuario_nome ? `<div class="historico-linha"><span>👤 Responsável:</span> <strong>${cx.usuario_nome}</strong></div>` : ''}
-          <div class="historico-linha"><span>🕐 Abertura:</span> <strong>${cx.abertura || '-'}</strong></div>
-          <div class="historico-linha"><span>🕐 Fechamento:</span> <strong>${cx.fechamento || '-'}</strong></div>
+          ${cx.usuario_nome ? `<div class="historico-linha"><span>👤 ${cx.usuario_nome}</span></div>` : ''}
+          <div class="historico-linha"><span>🕐 ${cx.abertura || '-'} → ${cx.fechamento || '-'}</span></div>
           <div class="historico-linha"><span>💵 Inicial:</span> <strong>${formatarDinheiro(cx.valor_inicial)}</strong></div>
           <div class="historico-linha"><span>⬆️ Entradas:</span> <strong style="color:var(--verde)">${formatarDinheiro(cx.entradas)}</strong></div>
           <div class="historico-linha"><span>⬇️ Saídas:</span> <strong style="color:var(--vermelho)">${formatarDinheiro(cx.saidas)}</strong></div>
-          <div class="historico-saldo">Saldo do dia: ${formatarDinheiro(saldo)}</div>
+          <div class="historico-saldo">Saldo: ${formatarDinheiro(saldo)}</div>
         </div>`;
     }).join('');
   } catch(e) {}
 }
 
+function exportarCaixaHoje() {
+  if (!caixaAtual) { alert('Abra o caixa primeiro'); return; }
+  window.open('/api/caixa/' + caixaAtual.id + '/csv', '_blank');
+}
+function exportarHistoricoCaixa() { window.open('/api/caixa/historico/csv', '_blank'); }
+
+async function editarMovimentacao(id) {
+  const movs = await apiGet('/movimentacoes/' + caixaAtual.id);
+  const m = movs.find(x => x.id === id);
+  if (!m) return;
+  const novaDesc = prompt('Nova descrição:', m.descricao); if (novaDesc === null) return;
+  const novoValor = prompt('Novo valor:', m.valor); if (novoValor === null) return;
+  const novaCat = prompt('Categoria (Essencial / Desejo / Investimento):', m.categoria); if (novaCat === null) return;
+  if (!['Essencial','Desejo','Investimento'].includes(novaCat)) { alert('Categoria inválida'); return; }
+  await apiPut('/movimentacoes/' + id, { descricao: novaDesc, valor: parseFloat(novoValor), tipo: m.tipo, categoria: novaCat });
+  atualizarSaldoCaixa();
+  carregarMovimentacoes();
+}
+async function estornarMovimentacao(id) {
+  const motivo = prompt('Motivo do estorno:', 'Erro no lançamento'); if (!motivo) return;
+  await apiPut('/movimentacoes/' + id + '/estornar', { motivo });
+  alert('✅ Estorno registrado');
+  atualizarSaldoCaixa();
+  carregarMovimentacoes();
+}
+async function excluirMovimentacao(id) {
+  if (!confirm('Excluir permanentemente?')) return;
+  await apiDelete('/movimentacoes/' + id);
+  atualizarSaldoCaixa();
+  carregarMovimentacoes();
+}
+
+// ==========================================
 // CLIENTES
+// ==========================================
 async function salvarCliente() {
   const dados = {
     nome: document.getElementById('cliNome').value.trim(),
@@ -835,6 +942,8 @@ async function carregarClientes() {
   const lista = await apiGet('/clientes');
   const el = document.getElementById('listaClientes');
   if (!lista.length) { el.innerHTML = '<p class="vazio">Nenhum cliente cadastrado</p>'; return; }
+  const podeEdit = temPermissao('clientes_edit');
+  const podeDel = temPermissao('clientes_del');
   el.innerHTML = lista.map(c => `
     <div class="item-lista">
       <div class="item-info">
@@ -842,22 +951,33 @@ async function carregarClientes() {
         <p>📞 ${c.telefone || 'Não informado'}</p>
         ${c.endereco ? `<p>📍 ${c.endereco}</p>` : ''}
       </div>
-      ${temPermissao('clientes_del') ? `<div class="item-acoes"><button class="btn btn-perigo btn-menor" onclick="excluirCliente(${c.id})">🗑️</button></div>` : ''}
+      <div class="item-acoes">
+        ${podeEdit ? `<button class="btn btn-azul btn-menor" onclick="editarCliente(${c.id})">✏️</button>` : ''}
+        ${podeDel ? `<button class="btn btn-perigo btn-menor" onclick="excluirCliente(${c.id})">🗑️</button>` : ''}
+      </div>
     </div>`).join('');
 }
+async function editarCliente(id) {
+  const lista = await apiGet('/clientes');
+  const c = lista.find(x => x.id === id);
+  if (!c) return;
+  const nome = prompt('Nome:', c.nome); if (nome === null) return;
+  const tel = prompt('Telefone:', c.telefone || ''); if (tel === null) return;
+  const end = prompt('Endereço:', c.endereco || ''); if (end === null) return;
+  const obs = prompt('Observações:', c.observacoes || ''); if (obs === null) return;
+  await apiPut('/clientes/' + id, { nome, telefone: tel, endereco: end, observacoes: obs });
+  alert('✅ Cliente atualizado');
+  carregarClientes();
+}
 async function excluirCliente(id) {
-  if (!confirm('Excluir este cliente?')) return;
+  if (!confirm('Excluir cliente?')) return;
   await apiDelete('/clientes/' + id);
   carregarClientes();
 }
-async function carregarClientesSelect() {
-  const lista = await apiGet('/clientes');
-  document.getElementById('atendCliente').innerHTML =
-    '<option value="">-- Selecione o Cliente --</option>' +
-    lista.map(c => `<option value="${c.id}">${c.nome}</option>`).join('');
-}
 
+// ==========================================
 // PRODUTOS
+// ==========================================
 function calcLucro() {
   const custo = parseFloat(document.getElementById('prodCusto').value) || 0;
   const venda = parseFloat(document.getElementById('prodPreco').value) || 0;
@@ -905,19 +1025,13 @@ async function salvarProduto() {
     foto,
     publicar_loja: document.getElementById('prodPublicar').checked ? 1 : 0
   };
-  if (id) {
-    await apiPut('/produtos/' + id, dados);
-    alert('✅ Produto atualizado!');
-  } else {
-    await apiPost('/produtos', dados);
-    alert('✅ Produto cadastrado!');
-  }
+  if (id) { await apiPut('/produtos/' + id, dados); alert('✅ Atualizado!'); }
+  else { await apiPost('/produtos', dados); alert('✅ Cadastrado!'); }
   limparFormProduto();
   carregarProdutos();
 }
 function limparFormProduto() {
-  ['prodId','prodNome','prodDescricao','prodPreco','prodCusto','prodQuantidade','prodMinimo','prodMaximo','prodFoto']
-    .forEach(id => document.getElementById(id).value = '');
+  ['prodId','prodNome','prodDescricao','prodPreco','prodCusto','prodQuantidade','prodMinimo','prodMaximo','prodFoto'].forEach(id => document.getElementById(id).value = '');
   document.getElementById('prodFotoFile').value = '';
   document.getElementById('previewFotoBox').style.display = 'none';
   document.getElementById('prodPublicar').checked = true;
@@ -938,12 +1052,8 @@ async function editarProduto(id) {
   document.getElementById('prodMaximo').value = p.maximo || 100;
   document.getElementById('prodFoto').value = p.foto || '';
   document.getElementById('prodPublicar').checked = p.publicar_loja == 1;
-  if (p.foto) {
-    document.getElementById('previewFotoImg').src = p.foto;
-    document.getElementById('previewFotoBox').style.display = 'block';
-  } else {
-    document.getElementById('previewFotoBox').style.display = 'none';
-  }
+  if (p.foto) { document.getElementById('previewFotoImg').src = p.foto; document.getElementById('previewFotoBox').style.display = 'block'; }
+  else { document.getElementById('previewFotoBox').style.display = 'none'; }
   calcLucro();
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
@@ -952,9 +1062,7 @@ async function carregarProdutos() {
   const el = document.getElementById('listaProdutos');
   const alertas = document.getElementById('alertasEstoque');
   const baixo = lista.filter(p => p.quantidade <= p.minimo);
-  alertas.innerHTML = baixo.length
-    ? baixo.map(p => `<div class="alerta-estoque">⚠️ <strong>${p.nome}</strong>: ${p.quantidade} un (mín: ${p.minimo})</div>`).join('')
-    : '';
+  alertas.innerHTML = baixo.length ? baixo.map(p => `<div class="alerta-estoque">⚠️ <strong>${p.nome}</strong>: ${p.quantidade} un (mín: ${p.minimo})</div>`).join('') : '';
   if (!lista.length) { el.innerHTML = '<p class="vazio">Nenhum produto cadastrado</p>'; return; }
   const podeEditar = temPermissao('produtos_edit');
   const podeDel = temPermissao('produtos_del');
@@ -970,9 +1078,7 @@ async function carregarProdutos() {
             <h4>${p.nome} <small style="color:#888">(${p.categoria})</small> ${pub}</h4>
             <p>💰 Venda: ${formatarDinheiro(p.preco)} | 💸 Compra: ${formatarDinheiro(p.custo)}</p>
             <p>📈 Lucro: <strong style="color:${lucro >= 0 ? '#4caf50' : '#f44336'}">${formatarDinheiro(lucro)}</strong></p>
-            <p style="font-weight:${p.quantidade <= p.minimo ? 'bold;color:#e65100' : 'normal'}">
-              📊 Estoque: ${p.quantidade} un (mín: ${p.minimo} / máx: ${p.maximo || 100})
-            </p>
+            <p style="font-weight:${p.quantidade <= p.minimo ? 'bold;color:#e65100' : 'normal'}">📊 Estoque: ${p.quantidade} un</p>
           </div>
         </div>
         ${podeEditar ? `
@@ -993,60 +1099,226 @@ async function ajustarEstoque(id, delta) {
   carregarProdutos();
 }
 async function excluirProduto(id) {
-  if (!confirm('Excluir este produto?')) return;
+  if (!confirm('Excluir produto?')) return;
   await apiDelete('/produtos/' + id);
   carregarProdutos();
 }
 
-// ATENDIMENTOS
-async function registrarAtendimento() {
-  const clienteId = document.getElementById('atendCliente').value;
-  const data = document.getElementById('atendData').value || hoje();
-  const hora = document.getElementById('atendHora').value || horaAgora();
-  const servicos = document.getElementById('atendServicos').value.trim();
-  const valor = parseFloat(document.getElementById('atendValor').value);
-  const pagamento = document.getElementById('atendPagamento').value;
-  if (!clienteId) { alert('Selecione o cliente!'); return; }
-  if (!servicos || isNaN(valor) || valor <= 0) { alert('Preencha os dados!'); return; }
-  const listaC = await apiGet('/clientes');
-  const cliente = listaC.find(c => c.id == clienteId);
-  const r = await apiPost('/atendimentos', {
-    cliente_id: parseInt(clienteId), cliente_nome: cliente.nome,
-    data, hora, servicos, valor, pagamento
-  });
-  if (caixaAtual) {
-    await apiPost('/movimentacoes', {
-      caixa_id: caixaAtual.id,
-      descricao: `Atendimento: ${cliente.nome}`,
-      valor, tipo: 'entrada', categoria: 'Outros'
-    });
-    atualizarSaldoCaixa();
-    carregarMovimentacoes();
-  }
-  alert(`✅ Atendimento registrado!\nSua comissão: ${formatarDinheiro(r.comissao)}`);
-  document.getElementById('atendServicos').value = '';
-  document.getElementById('atendValor').value = '';
-  document.getElementById('atendHora').value = horaAgora();
-  carregarAtendimentos();
-}
+// ==========================================
+// ATENDIMENTOS UNIFICADOS
+// ==========================================
 async function carregarAtendimentos() {
-  const lista = await apiGet('/atendimentos');
-  const el = document.getElementById('listaAtendimentos');
-  if (!lista.length) { el.innerHTML = '<p class="vazio">Nenhum atendimento registrado</p>'; return; }
-  const verTodos = temPermissao('atendimentos_todos');
-  el.innerHTML = lista.map(a => `
-    <div class="item-lista">
-      <div class="item-info">
-        <h4>📅 ${new Date(a.data + 'T00:00:00').toLocaleDateString('pt-BR')} às ${a.hora || '--:--'} — ${a.cliente_nome}</h4>
-        <p>💇 ${a.servicos}</p>
-        <p>💳 ${a.pagamento}${verTodos && a.profissional_nome ? ` · 👤 ${a.profissional_nome}` : ''}</p>
-        ${a.comissao ? `<p style="color:var(--verde)">💰 Comissão: ${formatarDinheiro(a.comissao)}</p>` : ''}
-      </div>
-      <div style="font-weight:bold; color: var(--rosa); font-size:16px">${formatarDinheiro(a.valor)}</div>
-    </div>`).join('');
+  atendimentosCache = await apiGet('/atendimentos');
+  renderAtendimentos();
 }
 
+function renderAtendimentos() {
+  const el = document.getElementById('listaAtendimentos');
+  const filtroData = document.getElementById('filtroData').value;
+
+  // Aplica filtros
+  let lista = atendimentosCache;
+  if (filtroData) lista = lista.filter(a => a.data === filtroData);
+  if (filtroAtendAtual !== 'todos') lista = lista.filter(a => a.status === filtroAtendAtual);
+
+  // Contadores (sempre sobre o cache total, respeitando filtro de data)
+  const baseData = filtroData ? atendimentosCache.filter(a => a.data === filtroData) : atendimentosCache;
+  document.getElementById('contTodos').textContent = baseData.length;
+  document.getElementById('contAgendado').textContent = baseData.filter(a => a.status === 'agendado').length;
+  document.getElementById('contFeito').textContent = baseData.filter(a => a.status === 'feito').length;
+  document.getElementById('contFaltou').textContent = baseData.filter(a => a.status === 'faltou').length;
+
+  if (!lista.length) { el.innerHTML = '<p class="vazio">Nenhum atendimento encontrado</p>'; return; }
+
+  const verTodos = temPermissao('atendimentos_todos');
+  const podeEdit = verTodos;
+
+  el.innerHTML = lista.map(a => {
+    const statusTag = a.status === 'agendado' ? '<span class="tag-status tag-agendado">📅 Agendado</span>'
+      : a.status === 'faltou' ? '<span class="tag-status tag-faltou">❌ Faltou</span>'
+      : '<span class="tag-status tag-feito">✅ Feito</span>';
+
+    const valorShow = a.status === 'agendado'
+      ? `<div class="atend-valor">💰 Previsto: ${formatarDinheiro(a.valor_previsto || 0)}</div>
+         <div class="atend-info">Taxa se faltar: ${a.taxa_percentual || 30}% = ${formatarDinheiro((a.valor_previsto || 0) * ((a.taxa_percentual || 30)/100))}</div>`
+      : a.status === 'faltou'
+      ? `<div class="atend-valor" style="color:var(--vermelho)">❌ Taxa cobrada: ${formatarDinheiro(a.taxa_cobrada || a.valor || 0)}</div>`
+      : `<div class="atend-valor">💰 ${formatarDinheiro(a.valor)}</div>
+         ${a.comissao ? `<div class="atend-comissao">💵 Comissão: ${formatarDinheiro(a.comissao)}</div>` : ''}`;
+
+    const acoes = a.status === 'agendado' && podeEdit ? `
+      <div class="atend-acoes">
+        <button class="btn btn-sucesso btn-menor" onclick="abrirCompareceu(${a.id})">✅ Compareceu</button>
+        <button class="btn btn-perigo btn-menor" onclick="marcarFaltou(${a.id})">❌ Faltou</button>
+        <button class="btn btn-azul btn-menor" onclick="editarAtendimento(${a.id})">✏️</button>
+        <button class="btn btn-perigo btn-menor" onclick="excluirAtendimento(${a.id})">🗑️</button>
+      </div>
+    ` : podeEdit ? `
+      <div class="atend-acoes">
+        <button class="btn btn-azul btn-menor" onclick="editarAtendimento(${a.id})">✏️ Editar</button>
+        <button class="btn btn-perigo btn-menor" onclick="excluirAtendimento(${a.id})">🗑️ Excluir</button>
+      </div>
+    ` : '';
+
+    return `
+      <div class="atend-card status-${a.status}">
+        <div class="atend-header">
+          <h4>👤 ${a.cliente_nome}</h4>
+          ${statusTag}
+        </div>
+        <div class="atend-info">
+          <strong>${new Date(a.data + 'T00:00:00').toLocaleDateString('pt-BR')}</strong> às
+          <span class="atend-horario">${a.hora || '--:--'}</span>
+        </div>
+        <div class="atend-info">💇 ${a.servicos}</div>
+        ${verTodos && a.profissional_nome ? `<div class="atend-info">👤 Prof: ${a.profissional_nome}</div>` : ''}
+        ${a.pagamento ? `<div class="atend-info">💳 ${a.pagamento}</div>` : ''}
+        ${valorShow}
+        ${acoes}
+      </div>`;
+  }).join('');
+}
+
+function setFiltroAtend(filtro, el) {
+  filtroAtendAtual = filtro;
+  document.querySelectorAll('.filtro-aba').forEach(a => a.classList.remove('ativo'));
+  el.classList.add('ativo');
+  renderAtendimentos();
+}
+
+function limparFiltroData() {
+  document.getElementById('filtroData').value = '';
+  carregarAtendimentos();
+}
+
+async function abrirNovoAtendimento() {
+  // Preenche select de clientes
+  const lista = await apiGet('/clientes');
+  document.getElementById('atendCliente').innerHTML =
+    '<option value="">-- Selecione --</option>' +
+    lista.map(c => `<option value="${c.id}">${c.nome}</option>`).join('');
+
+  document.getElementById('atendData').value = hoje();
+  document.getElementById('atendHora').value = horaAgora();
+  document.getElementById('atendServicos').value = '';
+  document.getElementById('atendValor').value = '';
+  document.getElementById('atendValorPrev').value = '';
+  document.getElementById('atendTaxa').value = 30;
+  document.getElementById('atendTipo').value = 'agendado';
+  mudarTipoAtend();
+  document.getElementById('modalAtend').classList.add('aberto');
+}
+
+function mudarTipoAtend() {
+  const tipo = document.getElementById('atendTipo').value;
+  document.getElementById('camposAgendado').style.display = tipo === 'agendado' ? 'block' : 'none';
+  document.getElementById('camposFeito').style.display = tipo === 'feito' ? 'block' : 'none';
+}
+
+function fecharModalAtend() {
+  document.getElementById('modalAtend').classList.remove('aberto');
+}
+
+async function salvarAtendimento() {
+  const tipo = document.getElementById('atendTipo').value;
+  const clienteId = document.getElementById('atendCliente').value;
+  const data = document.getElementById('atendData').value;
+  const hora = document.getElementById('atendHora').value;
+  const servicos = document.getElementById('atendServicos').value.trim();
+
+  if (!clienteId || !data || !hora || !servicos) {
+    alert('Preencha cliente, data, hora e serviço');
+    return;
+  }
+
+  const listaC = await apiGet('/clientes');
+  const cliente = listaC.find(c => c.id == clienteId);
+
+  let dados = {
+    cliente_id: parseInt(clienteId),
+    cliente_nome: cliente.nome,
+    data, hora, servicos,
+    status: tipo
+  };
+
+  if (tipo === 'agendado') {
+    dados.valor_previsto = parseFloat(document.getElementById('atendValorPrev').value) || 0;
+    dados.taxa_percentual = parseFloat(document.getElementById('atendTaxa').value) || 30;
+  } else {
+    dados.valor = parseFloat(document.getElementById('atendValor').value) || 0;
+    dados.pagamento = document.getElementById('atendPagamento').value;
+  }
+
+  const r = await apiPost('/atendimentos', dados);
+  if (tipo === 'feito') alert(`✅ Atendimento registrado!\nComissão: ${formatarDinheiro(r.comissao)}`);
+  else alert('✅ Agendamento criado!');
+
+  fecharModalAtend();
+  carregarAtendimentos();
+  if (caixaAtual) { atualizarSaldoCaixa(); carregarMovimentacoes(); }
+}
+
+function abrirCompareceu(id) {
+  const a = atendimentosCache.find(x => x.id === id);
+  if (!a) return;
+  document.getElementById('compId').value = id;
+  document.getElementById('compValor').value = a.valor_previsto || 0;
+  document.getElementById('compPagamento').value = 'Dinheiro';
+  document.getElementById('modalCompareceu').classList.add('aberto');
+}
+
+async function confirmarCompareceu() {
+  const id = document.getElementById('compId').value;
+  const valor = parseFloat(document.getElementById('compValor').value) || 0;
+  const pagamento = document.getElementById('compPagamento').value;
+
+  const r = await apiPut('/atendimentos/' + id + '/compareceu', { valor, pagamento });
+  alert(`✅ Comparecimento confirmado!\nComissão: ${formatarDinheiro(r.comissao)}`);
+  document.getElementById('modalCompareceu').classList.remove('aberto');
+  carregarAtendimentos();
+  if (caixaAtual) { atualizarSaldoCaixa(); carregarMovimentacoes(); }
+}
+
+async function marcarFaltou(id) {
+  const a = atendimentosCache.find(x => x.id === id);
+  if (!a) return;
+  const taxaVal = (a.valor_previsto || 0) * ((a.taxa_percentual || 30) / 100);
+  if (!confirm(`Marcar como FALTOU?\nVai cobrar taxa de ${a.taxa_percentual || 30}% = ${formatarDinheiro(taxaVal)}`)) return;
+  const r = await apiPut('/atendimentos/' + id + '/faltou', {});
+  alert(`✅ Falta registrada. Taxa: ${formatarDinheiro(r.taxa_cobrada)}`);
+  carregarAtendimentos();
+  if (caixaAtual) { atualizarSaldoCaixa(); carregarMovimentacoes(); }
+}
+
+async function editarAtendimento(id) {
+  const a = atendimentosCache.find(x => x.id === id);
+  if (!a) return;
+  const novaData = prompt('Data (AAAA-MM-DD):', a.data); if (novaData === null) return;
+  const novaHora = prompt('Hora (HH:MM):', a.hora || ''); if (novaHora === null) return;
+  const novosServicos = prompt('Serviços:', a.servicos); if (novosServicos === null) return;
+  let novoValor = a.valor;
+  if (a.status === 'feito') {
+    const v = prompt('Valor:', a.valor); if (v === null) return;
+    novoValor = parseFloat(v) || 0;
+  }
+  const novoPag = prompt('Pagamento:', a.pagamento || 'Dinheiro'); if (novoPag === null) return;
+  await apiPut('/atendimentos/' + id, {
+    data: novaData, hora: novaHora, servicos: novosServicos,
+    valor: novoValor, pagamento: novoPag
+  });
+  alert('✅ Atualizado');
+  carregarAtendimentos();
+}
+
+async function excluirAtendimento(id) {
+  if (!confirm('Excluir este atendimento?')) return;
+  await apiDelete('/atendimentos/' + id);
+  carregarAtendimentos();
+}
+
+// ==========================================
 // PEDIDOS
+// ==========================================
 async function carregarPedidos() {
   try {
     const lista = await fetch('/api/loja/pedidos', { credentials: 'include' }).then(r => r.json());
@@ -1068,7 +1340,7 @@ async function carregarPedidos() {
           <div class="pedido-total">Total: ${formatarDinheiro(p.total)}</div>
           <div class="linha" style="margin-top:10px">
             <a href="${whats}" target="_blank" class="btn btn-sucesso btn-menor" style="text-decoration:none;text-align:center;flex:1">💬 WhatsApp</a>
-            ${podeGer && p.status === 'pendente' ? `<button class="btn btn-azul btn-menor" onclick="mudarStatusPedido(${p.id},'entregue')">✅ Entregue</button>` : ''}
+            ${podeGer && p.status === 'pendente' ? `<button class="btn btn-azul btn-menor" onclick="mudarStatusPedido(${p.id},'entregue')">✅</button>` : ''}
             ${podeGer ? `<button class="btn btn-perigo btn-menor" onclick="mudarStatusPedido(${p.id},'cancelado')">❌</button>` : ''}
           </div>
         </div>`;
@@ -1084,14 +1356,16 @@ async function mudarStatusPedido(id, status) {
   carregarPedidos();
 }
 
+// ==========================================
 // EQUIPE
+// ==========================================
 async function carregarEquipe() {
   try {
     const lista = await apiGet('/usuarios');
     const el = document.getElementById('listaUsuarios');
     const podeEditar = temPermissao('usuarios');
     document.getElementById('cardNovoUsuario').style.display = podeEditar ? 'block' : 'none';
-    if (!lista.length) { el.innerHTML = '<p class="vazio">Nenhum usuário cadastrado</p>'; return; }
+    if (!lista.length) { el.innerHTML = '<p class="vazio">Nenhum usuário</p>'; return; }
     el.innerHTML = lista.map(u => {
       const info = CARGOS[u.cargo] || CARGOS.auxiliar;
       return `
@@ -1099,7 +1373,7 @@ async function carregarEquipe() {
           <div class="icone">${info.avatar}</div>
           <div class="info" style="flex:1">
             <h4>${u.nome} <span class="badge ${info.badge}">${info.nome}</span></h4>
-            <p>📧 ${u.email} · ${u.ativo ? '🟢 Ativo' : '🔴 Inativo'}</p>
+            <p>📧 ${u.email} · ${u.ativo ? '🟢' : '🔴'}</p>
           </div>
           ${podeEditar ? `
           <div class="item-acoes" style="flex-direction:column">
@@ -1108,9 +1382,7 @@ async function carregarEquipe() {
           </div>` : ''}
         </div>`;
     }).join('');
-  } catch(e) {
-    document.getElementById('listaUsuarios').innerHTML = '<p class="vazio">Sem permissão para ver a equipe</p>';
-  }
+  } catch(e) {}
 }
 async function salvarUsuario() {
   const id = document.getElementById('userId').value;
@@ -1123,13 +1395,8 @@ async function salvarUsuario() {
   };
   if (!dados.nome || !dados.email) { alert('Preencha nome e email!'); return; }
   if (!id && dados.senha.length < 6) { alert('Senha mínima: 6 caracteres'); return; }
-  if (id) {
-    await apiPut('/usuarios/' + id, dados);
-    alert('✅ Usuário atualizado!');
-  } else {
-    await apiPost('/usuarios', dados);
-    alert('✅ Usuário cadastrado!');
-  }
+  if (id) { await apiPut('/usuarios/' + id, dados); alert('✅ Atualizado!'); }
+  else { await apiPost('/usuarios', dados); alert('✅ Cadastrado!'); }
   limparFormUser();
   carregarEquipe();
 }
@@ -1150,14 +1417,15 @@ async function editarUsuario(id) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 async function excluirUsuario(id) {
-  if (!confirm('Excluir este usuário?')) return;
+  if (!confirm('Excluir usuário?')) return;
   await apiDelete('/usuarios/' + id);
   carregarEquipe();
 }
 
-// RELATÓRIOS DE COMISSÃO
+// ==========================================
+// RELATÓRIOS
+// ==========================================
 let relMesAtual = new Date().toISOString().slice(0, 7);
-
 function nomeMes(mesStr) {
   const [ano, mes] = mesStr.split('-');
   const meses = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
@@ -1178,10 +1446,7 @@ async function carregarRelatorio() {
     document.getElementById('relTotalAtend').textContent = d.resumo.total_atendimentos;
     document.getElementById('relTicket').textContent = formatarDinheiro(d.resumo.ticket_medio);
     const el = document.getElementById('listaRelatorio');
-    if (!d.profissionais.length) {
-      el.innerHTML = '<p class="vazio">Nenhum atendimento neste mês</p>';
-      return;
-    }
+    if (!d.profissionais.length) { el.innerHTML = '<p class="vazio">Nenhum atendimento neste mês</p>'; return; }
     el.innerHTML = d.profissionais.map((p, i) => {
       const rank = i + 1;
       const info = CARGOS[p.cargo] || CARGOS.auxiliar;
@@ -1192,17 +1457,17 @@ async function carregarRelatorio() {
       const detalhes = atendimentos.map(a => `
         <div class="prof-detalhe-item">
           <span class="data">${new Date(a.data + 'T00:00:00').toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' })} ${a.hora || ''}</span>
-          <span class="desc">${a.cliente_nome} — ${a.servicos.substring(0, 30)}${a.servicos.length > 30 ? '…' : ''}</span>
+          <span class="desc">${a.cliente_nome} — ${a.servicos.substring(0, 25)}</span>
           <span class="valor">${formatarDinheiro(a.valor)}<span class="comissao">+${formatarDinheiro(a.comissao)}</span></span>
         </div>
       `).join('');
       return `
-        <div class="prof-card ${classeRank}" onclick="toggleProf(this)">
+        <div class="prof-card ${classeRank}" onclick="this.classList.toggle('aberto')">
           <div class="prof-header">
             <div class="rank-medal ${classeRank}">${medalha}</div>
             <div class="prof-info">
               <h4>${p.profissional_nome} <span class="badge ${info.badge}" style="font-size:9px">${info.nome}</span></h4>
-              <p>${p.qtd_atendimentos} atendimento(s) <span class="perc-badge">${pct}%</span></p>
+              <p>${p.qtd_atendimentos} atend. <span class="perc-badge">${pct}%</span></p>
             </div>
             <div class="prof-valores">
               <div class="fat">${formatarDinheiro(p.total_faturado)}</div>
@@ -1210,22 +1475,19 @@ async function carregarRelatorio() {
             </div>
           </div>
           <div class="prof-detalhes">
-            <p style="font-size:12px;color:#888;margin-bottom:8px;">🎯 Ticket médio: <strong>${formatarDinheiro(p.ticket_medio)}</strong></p>
+            <p style="font-size:12px;color:#888;margin-bottom:8px;">🎯 Ticket: <strong>${formatarDinheiro(p.ticket_medio)}</strong></p>
             ${detalhes}
           </div>
         </div>`;
     }).join('');
-  } catch(e) {
-    console.error(e);
-    document.getElementById('listaRelatorio').innerHTML = '<p class="vazio">Erro ao carregar relatório</p>';
-  }
+  } catch(e) {}
 }
-function toggleProf(el) { el.classList.toggle('aberto'); }
 function exportarCSV() { window.open('/api/relatorios/comissoes/csv?mes=' + relMesAtual, '_blank'); }
 
-// EDUCAÇÃO FINANCEIRA PRO
+// ==========================================
+// EDUCAÇÃO FINANCEIRA
+// ==========================================
 let eduMesAtual = new Date().toISOString().slice(0, 7);
-
 function nomeMesEdu(mesStr) {
   const [ano, mes] = mesStr.split('-');
   const meses = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
@@ -1247,6 +1509,7 @@ function setaVar(el, valor, inverso = false) {
     el.textContent = `${sinal} ${Math.abs(valor).toFixed(0)}% vs mês anterior`;
   }
 }
+
 async function carregarEducacaoFinanceira() {
   try {
     document.getElementById('eduMesAtual').textContent = nomeMesEdu(eduMesAtual);
@@ -1260,40 +1523,41 @@ async function carregarEducacaoFinanceira() {
     const econEl = document.getElementById('eduEconomia');
     econEl.textContent = formatarDinheiro(d.economizado);
     econEl.style.color = d.economizado >= 0 ? '#2e7d32' : '#c62828';
-    const econBox = document.getElementById('eduEconomiaBox');
-    econBox.style.borderColor = d.economizado >= 0 ? '#ffd54f' : '#ef5350';
-    econBox.style.background = d.economizado >= 0
-      ? 'linear-gradient(135deg, #fff8e1, #ffecb3)'
-      : 'linear-gradient(135deg, #ffebee, #ffcdd2)';
     const varEconEl = document.getElementById('eduVarEconomia');
     varEconEl.className = 'edu-var ' + (d.variacao.economia >= 0 ? 'up' : 'down');
     varEconEl.textContent = (d.variacao.economia >= 0 ? '↑ ' : '↓ ') +
       formatarDinheiro(Math.abs(d.variacao.economia)) + ' vs mês anterior';
 
-    const total = d.totalSaidas || 1;
-    const pct = {
-      Essencial: (d.porCategoria.Essencial / total) * 100,
-      Desejo: (d.porCategoria.Desejo / total) * 100,
-      Investimento: (d.porCategoria.Investimento / total) * 100,
-      Outros: (d.porCategoria.Outros / total) * 100
-    };
-    const CIRC = 2 * Math.PI * 70;
-    const segs = [
-      { id: 'donutEssencial', pct: pct.Essencial },
-      { id: 'donutDesejo', pct: pct.Desejo },
-      { id: 'donutInvestimento', pct: pct.Investimento },
-      { id: 'donutOutros', pct: pct.Outros }
-    ];
-    let offset = 0;
-    segs.forEach(s => {
-      const el = document.getElementById(s.id);
-      const tamanho = (s.pct / 100) * CIRC;
-      el.setAttribute('stroke-dasharray', `${tamanho} ${CIRC - tamanho}`);
-      el.setAttribute('stroke-dashoffset', -offset);
-      offset += tamanho;
-    });
-    document.getElementById('donutTotal').textContent = formatarDinheiro(d.totalSaidas).replace('R$ ', 'R$');
+    // ==========================================
+    // DONUT CORRIGIDO (agora funciona!)
+    // ==========================================
+    const total = d.totalSaidas || 0;
+    const CIRC = 2 * Math.PI * 70; // ~439.82
 
+    // Zera tudo primeiro
+    ['donutEssencial','donutDesejo','donutInvestimento','donutOutros'].forEach(id => {
+      const el = document.getElementById(id);
+      el.setAttribute('stroke-dasharray', `0 ${CIRC}`);
+      el.setAttribute('stroke-dashoffset', '0');
+    });
+
+    if (total > 0) {
+      const ordem = ['Essencial','Desejo','Investimento','Outros'];
+      const ids = { Essencial:'donutEssencial', Desejo:'donutDesejo', Investimento:'donutInvestimento', Outros:'donutOutros' };
+      let offset = 0;
+      ordem.forEach(nome => {
+        const valor = d.porCategoria[nome] || 0;
+        const tamanho = (valor / total) * CIRC;
+        const el = document.getElementById(ids[nome]);
+        el.setAttribute('stroke-dasharray', `${tamanho} ${CIRC - tamanho}`);
+        el.setAttribute('stroke-dashoffset', -offset);
+        offset += tamanho;
+      });
+    }
+
+    document.getElementById('donutTotal').textContent = formatarDinheiro(total).replace(/\s/g, '');
+
+    // Legenda sempre atualizada
     document.getElementById('legEssencial').textContent = formatarDinheiro(d.porCategoria.Essencial);
     document.getElementById('legDesejo').textContent = formatarDinheiro(d.porCategoria.Desejo);
     document.getElementById('legInvestimento').textContent = formatarDinheiro(d.porCategoria.Investimento);
@@ -1316,7 +1580,7 @@ async function carregarEducacaoFinanceira() {
     rBarra.textContent = Math.round(d.reserva.percentual) + '%';
     document.getElementById('eduReservaInfo').textContent = d.reserva.meta > 0
       ? `🛡️ Cobre ${d.reserva.mesesCobertos.toFixed(1)} meses de despesas`
-      : '💡 Defina uma meta na engrenagem ⚙️';
+      : '💡 Defina uma meta no ⚙️';
 
     desenharGrafico(d.evolucao);
 
@@ -1326,10 +1590,7 @@ async function carregarEducacaoFinanceira() {
     } else {
       insEl.innerHTML = d.insights.map(i => `<div class="insight ${i.tipo}">${i.texto}</div>`).join('');
     }
-  } catch(e) {
-    console.error(e);
-    document.getElementById('eduInsights').innerHTML = '<p class="vazio">Erro ao carregar</p>';
-  }
+  } catch(e) { console.error(e); }
 }
 function atualizarBarra(nome, d, barraId, txtId, classeBase) {
   const valor = d.porCategoria[nome] || 0;
@@ -1353,8 +1614,8 @@ function desenharGrafico(evolucao) {
     return `
       <div class="barra-mes ${ativo ? 'ativo' : ''}">
         <div class="barra-par">
-          <div class="barra-ent" style="height:${hEnt}%" title="Entradas: ${formatarDinheiro(e.entradas)}"></div>
-          <div class="barra-sai" style="height:${hSai}%" title="Saídas: ${formatarDinheiro(e.saidas)}"></div>
+          <div class="barra-ent" style="height:${hEnt}%"></div>
+          <div class="barra-sai" style="height:${hSai}%"></div>
         </div>
         <div class="barra-mes-label">${e.label}</div>
       </div>`;
@@ -1371,13 +1632,9 @@ async function abrirConfigMetas() {
     document.getElementById('cfgReservaMeta').value = cfg.reserva_meta || '';
     somaPct();
     document.getElementById('modalMetas').classList.add('aberto');
-  } catch(e) {
-    alert('Erro ao carregar configuração');
-  }
+  } catch(e) { alert('Erro ao carregar'); }
 }
-function fecharConfigMetas() {
-  document.getElementById('modalMetas').classList.remove('aberto');
-}
+function fecharConfigMetas() { document.getElementById('modalMetas').classList.remove('aberto'); }
 function somaPct() {
   const e = parseFloat(document.getElementById('cfgEssencial').value) || 0;
   const d = parseFloat(document.getElementById('cfgDesejo').value) || 0;
@@ -1390,43 +1647,32 @@ function somaPct() {
 }
 async function salvarConfigMetas() {
   const soma = somaPct();
-  if (Math.abs(soma - 100) > 0.01) {
-    alert('A soma dos percentuais precisa ser exatamente 100%');
-    return;
-  }
-  const dados = {
+  if (Math.abs(soma - 100) > 0.01) { alert('Soma precisa ser 100%'); return; }
+  await apiPut('/educacao/config', {
     percentual_essencial: parseFloat(document.getElementById('cfgEssencial').value) || 0,
     percentual_desejo: parseFloat(document.getElementById('cfgDesejo').value) || 0,
     percentual_investimento: parseFloat(document.getElementById('cfgInvestimento').value) || 0,
     meta_economia_mensal: parseFloat(document.getElementById('cfgMetaEconomia').value) || 0,
     reserva_atual: parseFloat(document.getElementById('cfgReservaAtual').value) || 0,
     reserva_meta: parseFloat(document.getElementById('cfgReservaMeta').value) || 0
-  };
-  try {
-    await apiPut('/educacao/config', dados);
-    alert('✅ Configuração salva!');
-    fecharConfigMetas();
-    carregarEducacaoFinanceira();
-  } catch(e) {
-    alert('Erro ao salvar: ' + e.message);
-  }
+  });
+  alert('✅ Salvo!');
+  fecharConfigMetas();
+  carregarEducacaoFinanceira();
 }
 
-// INICIALIZAÇÃO
+// ==========================================
+// INIT
+// ==========================================
 window.onload = async function() {
   document.getElementById('atendData').value = hoje();
   document.getElementById('atendHora').value = horaAgora();
+  document.getElementById('filtroData').value = '';
   try {
     const r = await fetch(API + '/auth/me', { credentials: 'include' });
-    if (r.ok) {
-      usuarioLogado = await r.json();
-      mostrarApp();
-    } else {
-      mostrarLogin();
-    }
-  } catch(e) {
-    mostrarLogin();
-  }
+    if (r.ok) { usuarioLogado = await r.json(); mostrarApp(); }
+    else mostrarLogin();
+  } catch(e) { mostrarLogin(); }
 };
 </script>
 </body>
