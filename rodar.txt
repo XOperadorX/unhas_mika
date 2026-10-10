@@ -1,0 +1,5 @@
+npm install
+npm start
+# Painel: http://localhost:3000
+# Loja:   http://localhost:3000/loja
+

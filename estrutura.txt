@@ -1,0 +1,38 @@
+gerenciador-unhas-mikaela/
+│
+├── 🔧 Backend
+│   ├── server.js
+│   ├── package.json
+│   ├── package-lock.json
+│   └── banco.db                  (gerado no 1º start)
+│
+├── 📱 PWA
+│   ├── sw.js
+│   ├── manifest.json             (você cria)
+│   └── icons/
+│       ├── icon-192.png
+│       ├── icon-512.png
+│       └── apple-touch-icon.png
+│
+├── 💅 Painel Admin
+│   └── public/
+│       └── index.html
+│
+├── 🛍️ Loja Online
+│   └── loja/
+│       └── index.html
+│
+├── 📖 Documentação
+│   └── manual/
+│       ├── manual.html
+│       └── gerar-manual-pdf.html
+│
+├── 🖼️ Uploads
+│   └── uploads/                  (fotos de produtos)
+│
+└── 🗄️ Legado
+    └── legado/
+        ├── gerenciador-unhas.html
+        └── iphone.html
+
+        
