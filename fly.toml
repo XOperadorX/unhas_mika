@@ -1,10 +1,10 @@
-# fly.toml app configuration file generated for unhas-mika on 2026-10-10T23:49:05Z
+# fly.toml app configuration file generated for unhas-mika on 2026-10-11T00:06:52Z
 #
-# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+# See https://docs.fly.io/reference/configuration for information about how to use this file.
 #
 
 app = 'unhas-mika'
-primary_region = 'gru'
+primary_region = 'ams'
 
 [build]
 
@@ -18,7 +18,7 @@ primary_region = 'gru'
 [http_service]
   internal_port = 8080
   force_https = true
-  auto_stop_machines = 'stop'
+  auto_stop_machines = true
   auto_start_machines = true
   min_machines_running = 0
   processes = ['app']
