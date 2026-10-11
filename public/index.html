@@ -3,13 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Mikaela Unhas">
+<meta name="theme-color" content="#e91e63">
 <title>Gerenciador Unhas Mikaela</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
 <style>
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
     :root { --rosa: #e91e63; --escuro: #2d2d2d; --verde: #4caf50; --vermelho: #f44336; --azul: #2196f3; --laranja: #ff9800; --roxo: #9c27b0; }
     body { background: #fef5f9; min-height: 100vh; padding-bottom: 80px; }
+
     .cabecalho { background: linear-gradient(135deg, var(--rosa), #ad1457); color: white; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+    .cabecalho .titulo-wrap { display: flex; align-items: center; gap: 8px; }
     .cabecalho .titulo { font-size: 16px; font-weight: bold; }
+    .cabecalho .versao-badge { background: rgba(255,255,255,0.22); font-size: 10px; font-weight: bold; padding: 2px 8px; border-radius: 10px; letter-spacing: 0.3px; font-family: monospace; }
     .cabecalho .usuario-box { display: flex; align-items: center; gap: 8px; font-size: 12px; }
     .cabecalho .usuario-box .avatar { width: 32px; height: 32px; border-radius: 50%; background: rgba(255,255,255,0.25); display: flex; align-items: center; justify-content: center; font-size: 16px; }
     .cabecalho .usuario-box button { background: rgba(255,255,255,0.2); border: none; color: white; padding: 6px 10px; border-radius: 6px; font-size: 12px; cursor: pointer; }
@@ -24,12 +34,14 @@
     .login-box input:focus { outline: none; border-color: var(--rosa); background: white; }
     .login-box button { width: 100%; background: var(--rosa); color: white; border: none; padding: 14px; border-radius: 8px; font-size: 16px; font-weight: bold; margin-top: 20px; cursor: pointer; }
     .login-erro { background: #ffebee; color: #c62828; padding: 10px; border-radius: 8px; font-size: 13px; text-align: center; margin-top: 12px; display: none; }
+    .login-versao { text-align: center; font-size: 11px; color: #bbb; margin-top: 16px; font-family: monospace; }
 
     .nav { position: fixed; bottom: 0; left: 0; right: 0; background: white; display: flex; justify-content: space-around; padding: 8px 0; box-shadow: 0 -2px 10px rgba(0,0,0,0.1); z-index: 100; overflow-x: auto; }
     .nav-btn { display: flex; flex-direction: column; align-items: center; border: none; background: none; color: #666; font-size: 9px; padding: 6px 4px; cursor: pointer; flex: 1; min-width: 55px; }
     .nav-btn.ativo { color: var(--rosa); font-weight: bold; }
     .nav-btn span { font-size: 19px; margin-bottom: 2px; }
     .nav-btn.escondido { display: none; }
+
     .secao { display: none; padding: 16px; }
     .secao.ativa { display: block; animation: aparece 0.3s ease; }
     @keyframes aparece { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
@@ -101,7 +113,6 @@
     .cargo-card .info { flex: 1; }
     .cargo-card .info h4 { font-size: 15px; color: var(--escuro); margin-bottom: 4px; }
     .cargo-card .info p { font-size: 12px; color: #666; line-height: 1.4; }
-    .cargo-card .info .perm { font-size: 11px; color: #888; margin-top: 6px; font-family: monospace; background: #f0f0f0; padding: 3px 6px; border-radius: 4px; display: inline-block; }
 
     .mes-selector { display: flex; align-items: center; justify-content: space-between; background: #fafafa; border-radius: 10px; padding: 8px; margin-bottom: 16px; border: 1px solid #eee; }
     .mes-btn { background: white; border: 1px solid #ddd; color: var(--rosa); width: 40px; height: 40px; border-radius: 50%; font-size: 16px; font-weight: bold; cursor: pointer; }
@@ -152,7 +163,6 @@
     .edu-economia { background: linear-gradient(135deg, #fff8e1, #ffecb3); border-radius: 12px; padding: 16px; text-align: center; border: 2px solid #ffd54f; }
     .edu-economia-valor { font-size: 26px; font-weight: bold; color: #e65100; margin: 6px 0; }
 
-    /* DONUT CORRIGIDO */
     .donut-wrap { display: flex; flex-direction: column; align-items: center; gap: 16px; }
     .donut-svg { width: 220px; height: 220px; overflow: visible; }
     .donut-svg circle { transition: stroke-dasharray 0.5s ease, stroke-dashoffset 0.5s ease; }
@@ -165,7 +175,7 @@
     .barra-wrap { margin: 10px 0 18px 0; }
     .barra-label { display: flex; justify-content: space-between; font-size: 13px; font-weight: 600; margin-bottom: 5px; }
     .barra-bg { background: #f0f0f0; height: 22px; border-radius: 11px; overflow: hidden; }
-    .barra-fill { height: 100%; border-radius: 11px; transition: width 0.5s ease; display: flex; align-items: center; justify-content: flex-end; padding-right: 8px; color: white; font-size: 11px; font-weight: bold; min-width: 30px; }
+    .barra-fill { height: 100%; border-radius: 11px; display: flex; align-items: center; justify-content: flex-end; padding-right: 8px; color: white; font-size: 11px; font-weight: bold; min-width: 30px; transition: width 0.6s ease, background 0.3s ease; }
     .barra-50 { background: linear-gradient(90deg, #4caf50, #66bb6a); }
     .barra-30 { background: linear-gradient(90deg, #2196f3, #42a5f5); }
     .barra-20 { background: linear-gradient(90deg, #9c27b0, #ba68c8); }
@@ -177,12 +187,13 @@
     .reserva-valor { font-size: 18px; font-weight: bold; color: #e65100; }
 
     .grafico-barras { display: flex; align-items: flex-end; justify-content: space-between; height: 160px; gap: 6px; padding: 8px 0; }
-    .barra-mes { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; height: 100%; justify-content: flex-end; }
+    .barra-mes { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; height: 100%; justify-content: flex-end; position: relative; cursor: pointer; }
     .barra-par { display: flex; gap: 3px; align-items: flex-end; height: 100%; }
     .barra-ent { background: linear-gradient(180deg, #66bb6a, #4caf50); width: 14px; border-radius: 4px 4px 0 0; min-height: 2px; }
     .barra-sai { background: linear-gradient(180deg, #ef5350, #f44336); width: 14px; border-radius: 4px 4px 0 0; min-height: 2px; }
     .barra-mes-label { font-size: 10px; color: #888; font-weight: bold; }
     .barra-mes.ativo .barra-mes-label { color: var(--rosa); }
+    .barra-mes:hover::after { content: attr(data-tooltip); position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); background: #2d2d2d; color: white; padding: 4px 8px; border-radius: 6px; font-size: 11px; white-space: nowrap; z-index: 10; margin-bottom: 4px; }
     .grafico-legenda { display: flex; justify-content: center; gap: 20px; margin-top: 12px; font-size: 12px; color: #666; }
     .grafico-legenda span { display: flex; align-items: center; gap: 6px; }
 
@@ -190,6 +201,12 @@
     .insight.ok { background: #e8f5e9; border-left: 4px solid #4caf50; }
     .insight.aviso { background: #fff3e0; border-left: 4px solid #ff9800; }
     .insight.info { background: #e3f2fd; border-left: 4px solid #2196f3; }
+
+    .badge-status { display: inline-block; font-size: 9px; padding: 2px 6px; border-radius: 8px; font-weight: bold; margin-left: 4px; text-transform: uppercase; vertical-align: middle; }
+    .badge-status.ok { background: #c8e6c9; color: #2e7d32; }
+    .badge-status.atencao { background: #ffe0b2; color: #e65100; }
+    .badge-status.estourado { background: #ffcdd2; color: #c62828; }
+    .badge-status.vazio { background: #f0f0f0; color: #888; }
 
     .modal-fundo { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 200; align-items: center; justify-content: center; padding: 16px; }
     .modal-fundo.aberto { display: flex; }
@@ -201,7 +218,6 @@
     .soma-ok { background: #e8f5e9; color: #2e7d32; }
     .soma-erro { background: #ffebee; color: #c62828; }
 
-    /* ATENDIMENTOS UNIFICADOS */
     .filtro-abas { display: flex; gap: 6px; margin-bottom: 12px; overflow-x: auto; padding-bottom: 4px; }
     .filtro-aba { background: white; border: 1px solid #ddd; padding: 8px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; color: #666; cursor: pointer; white-space: nowrap; }
     .filtro-aba.ativo { background: var(--rosa); color: white; border-color: var(--rosa); }
@@ -212,7 +228,6 @@
     .atend-card.status-agendado { border-left-color: var(--azul); }
     .atend-card.status-feito { border-left-color: var(--verde); }
     .atend-card.status-faltou { border-left-color: var(--vermelho); opacity: 0.85; }
-
     .atend-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
     .atend-header h4 { font-size: 15px; color: var(--escuro); }
     .atend-horario { font-size: 14px; font-weight: bold; color: var(--rosa); }
@@ -231,28 +246,44 @@
     .filtro-data-box { display: flex; gap: 8px; margin-bottom: 12px; align-items: center; }
     .filtro-data-box input { margin: 0; flex: 1; }
     .filtro-data-box button { margin: 0; }
+
+    .info-versao-item { padding: 8px; background: #fafafa; border-radius: 6px; margin-bottom: 6px; border-left: 3px solid var(--rosa); }
+    .info-versao-item .titulo-v { font-size: 13px; font-weight: bold; color: var(--escuro); }
+    .info-versao-item .data-v { font-weight: normal; color: #888; font-size: 11px; }
+    .info-versao-item .mudancas-v { font-size: 12px; color: #666; margin-top: 4px; line-height: 1.5; }
 </style>
 </head>
 <body>
 
-<!-- TELA DE LOGIN -->
+<!-- ============================== -->
+<!-- TELA DE LOGIN                   -->
+<!-- ============================== -->
 <div class="tela-login" id="telaLogin">
     <div class="login-box">
         <h1>💅 Unhas Mikaela</h1>
         <p class="sub">Sistema de Gestão Profissional</p>
-        <label>Email</label>
-        <input type="email" id="loginEmail" placeholder="seu@email.com">
-        <label>Senha</label>
-        <input type="password" id="loginSenha" placeholder="••••••••" onkeypress="if(event.key==='Enter')fazerLogin()">
-        <button onclick="fazerLogin()">🔓 Entrar</button>
+        <form onsubmit="event.preventDefault(); fazerLogin();" autocomplete="on">
+        <label for="loginEmail">Email</label>
+        <input type="email" id="loginEmail" name="email" placeholder="seu@email.com" autocomplete="username" required>
+        <label for="loginSenha">Senha</label>
+        <input type="password" id="loginSenha" name="senha" placeholder="••••••••" autocomplete="current-password" required>
+        <button type="submit">🔓 Entrar</button>
+      </form>
+
         <div class="login-erro" id="loginErro"></div>
+        <p class="login-versao" id="loginVersao">📦 carregando...</p>
     </div>
 </div>
 
-<!-- APP -->
+<!-- ============================== -->
+<!-- APP                             -->
+<!-- ============================== -->
 <div id="appContainer" style="display:none">
     <div class="cabecalho">
-        <span class="titulo">💅 Unhas Mikaela</span>
+        <div class="titulo-wrap">
+            <span class="titulo">💅 Unhas Mikaela</span>
+            <span class="versao-badge" id="versaoBadge">v—</span>
+        </div>
         <div class="usuario-box">
             <div class="avatar" id="userAvatar">👤</div>
             <div style="text-align:right">
@@ -368,7 +399,7 @@
         </div>
     </section>
 
-    <!-- ATENDIMENTOS UNIFICADOS -->
+    <!-- ATENDIMENTOS -->
     <section id="secao-atendimentos" class="secao">
         <div class="card">
             <h2>📝 Atendimentos & Agendamentos</h2>
@@ -409,10 +440,11 @@
         </div>
         <div class="card" id="cardNovoUsuario" style="display:none">
             <h2>➕ Novo Profissional</h2>
+            <form onsubmit="event.preventDefault(); salvarUsuario();" autocomplete="off">
             <input type="hidden" id="userId">
-            <input type="text" id="userNomeInput" placeholder="Nome completo">
-            <input type="email" id="userEmail" placeholder="Email de acesso">
-            <input type="password" id="userSenha" placeholder="Senha (mín. 6 caracteres)">
+            <input type="text" id="userNomeInput" name="nome" placeholder="Nome completo" autocomplete="off">
+            <input type="email" id="userEmail" name="email" placeholder="Email de acesso" autocomplete="off">
+            <input type="password" id="userSenha" name="senha" placeholder="Senha (mín. 6 caracteres)" autocomplete="new-password">
             <select id="userCargo">
                 <option value="auxiliar">🌿 Auxiliar (Iniciante)</option>
                 <option value="junior">🌱 Manicure Júnior</option>
@@ -422,8 +454,9 @@
                 <option value="lider">💅 Manicure Líder</option>
                 <option value="admin">👑 Administradora</option>
             </select>
-            <button class="btn btn-primario" onclick="salvarUsuario()">✅ Salvar</button>
-            <button class="btn" style="width:100%;background:#eee;color:#333;margin-top:6px;" onclick="limparFormUser()">✖️ Cancelar</button>
+            <button type="submit" class="btn btn-primario">✅ Salvar</button>
+            <button type="button" class="btn" style="width:100%;background:#eee;color:#333;margin-top:6px;" onclick="limparFormUser()">✖️ Cancelar</button>
+        </form>
         </div>
         <div class="card">
             <h2>📖 Níveis de Carreira</h2>
@@ -434,6 +467,19 @@
             <div class="cargo-card nivel-2"><div class="icone">✨</div><div class="info"><h4>Manicure Pleno</h4><p>Decorações, unhas postiças, SPA.</p></div></div>
             <div class="cargo-card nivel-1"><div class="icone">🌱</div><div class="info"><h4>Manicure Júnior</h4><p>Cuticagem, esmaltação.</p></div></div>
             <div class="cargo-card nivel-0"><div class="icone">🌿</div><div class="info"><h4>Auxiliar</h4><p>Em treinamento.</p></div></div>
+        </div>
+        <div class="card">
+            <h2>📦 Informações do Sistema</h2>
+            <div id="infoSistema">
+                <div class="historico-linha"><span>📦 Versão:</span><strong id="infoVersao">—</strong></div>
+                <div class="historico-linha"><span>📅 Data:</span><strong id="infoData">—</strong></div>
+                <div class="historico-linha"><span>👤 Autor:</span><strong id="infoAutor">—</strong></div>
+                <div class="historico-linha"><span>🌐 Modo:</span><strong>100% Offline (PWA)</strong></div>
+                <div class="historico-linha"><span>💾 Banco:</span><strong>SQLite</strong></div>
+                <div class="divisor"></div>
+                <h3 style="font-size:14px;margin-bottom:8px;">📜 Histórico de Versões</h3>
+                <div id="infoHistorico"></div>
+            </div>
         </div>
     </section>
 
@@ -561,7 +607,7 @@
     </nav>
 </div>
 
-<!-- MODAL: Novo Atendimento / Agendamento -->
+<!-- MODAL: Novo Atendimento -->
 <div class="modal-fundo" id="modalAtend">
     <div class="modal-card">
         <h3 id="modalAtendTitulo">➕ Novo Atendimento</h3>
@@ -680,7 +726,7 @@ async function apiDelete(url) {
   const r = await fetch(API + url, { method:'DELETE', credentials:'include' });
   if (r.status === 401) { mostrarLogin(); throw new Error('Não autenticado'); }
   if (r.status === 403) { const e = await r.json(); alert('🚫 ' + e.erro); throw new Error(e.erro); }
-  if (!r.ok) throw new Error('Erro ' + r.status);
+  if (!r.ok) { const e = await r.json().catch(()=>({})); throw new Error(e.erro || 'Erro ' + r.status); }
   return r.json();
 }
 
@@ -778,6 +824,31 @@ function mostrarSecao(nome, botao) {
 }
 
 // ==========================================
+// VERSÃO DO SISTEMA
+// ==========================================
+async function carregarVersao() {
+  try {
+    const v = await fetch('/api/versao').then(r => r.json());
+    const badge = document.getElementById('versaoBadge');
+    if (badge) badge.textContent = 'v' + v.numero;
+    const loginV = document.getElementById('loginVersao');
+    if (loginV) loginV.textContent = '📦 v' + v.numero + ' · ' + v.data;
+    document.getElementById('infoVersao').textContent = v.numero;
+    document.getElementById('infoData').textContent = v.data;
+    document.getElementById('infoAutor').textContent = v.autor;
+    const el = document.getElementById('infoHistorico');
+    if (v.historico && v.historico.length) {
+      el.innerHTML = v.historico.map(h => `
+        <div class="info-versao-item">
+          <div class="titulo-v">v${h.versao} <span class="data-v">— ${h.data}</span></div>
+          <div class="mudancas-v">${h.mudancas.map(m => '• ' + m).join('<br>')}</div>
+        </div>
+      `).join('');
+    }
+  } catch(e) { console.error('Versão:', e); }
+}
+
+// ==========================================
 // CAIXA
 // ==========================================
 async function verificarCaixaAberto() {
@@ -867,15 +938,30 @@ async function carregarMovimentacoes() {
     </div>`).join('');
 }
 
+// HISTÓRICO COM BOTÃO DE EXCLUIR
 async function carregarHistoricoCaixa() {
   try {
     const lista = await apiGet('/caixa/historico');
     const el = document.getElementById('historicoCaixa');
     if (!lista.length) { el.innerHTML = '<p class="vazio">Nenhum caixa registrado</p>'; return; }
+
+    const podeExcluir = temPermissao('caixa_fechar');
+
     el.innerHTML = lista.map(cx => {
       const dataFmt = new Date(cx.data + 'T00:00:00').toLocaleDateString('pt-BR');
-      const badge = cx.status === 'aberto' ? '<span class="badge badge-aberto">ABERTO</span>' : '<span class="badge badge-fechado">FECHADO</span>';
+      const badge = cx.status === 'aberto'
+        ? '<span class="badge badge-aberto">ABERTO</span>'
+        : '<span class="badge badge-fechado">FECHADO</span>';
       const saldo = cx.status === 'fechado' ? cx.saldo_final : cx.saldo_atual;
+
+      const btnExcluir = (podeExcluir && cx.status === 'fechado')
+        ? `<button class="btn btn-perigo btn-menor"
+             style="margin-top:8px;width:100%"
+             onclick="excluirCaixaHistorico(${cx.id}, '${dataFmt}', ${cx.qtd_mov || 0})">
+             🗑️ Excluir este dia
+           </button>`
+        : '';
+
       return `
         <div class="historico-card">
           <div class="data-titulo"><span>📅 ${dataFmt}</span>${badge}</div>
@@ -884,10 +970,48 @@ async function carregarHistoricoCaixa() {
           <div class="historico-linha"><span>💵 Inicial:</span> <strong>${formatarDinheiro(cx.valor_inicial)}</strong></div>
           <div class="historico-linha"><span>⬆️ Entradas:</span> <strong style="color:var(--verde)">${formatarDinheiro(cx.entradas)}</strong></div>
           <div class="historico-linha"><span>⬇️ Saídas:</span> <strong style="color:var(--vermelho)">${formatarDinheiro(cx.saidas)}</strong></div>
+          <div class="historico-linha"><span>📊 Movimentações:</span> <strong>${cx.qtd_mov || 0}</strong></div>
           <div class="historico-saldo">Saldo: ${formatarDinheiro(saldo)}</div>
+          ${btnExcluir}
         </div>`;
     }).join('');
-  } catch(e) {}
+  } catch(e) { console.error(e); }
+}
+
+// EXCLUIR CAIXA DO HISTÓRICO
+async function excluirCaixaHistorico(id, dataFmt, qtdMov) {
+  const ok1 = confirm(
+    `⚠️ ATENÇÃO!\n\n` +
+    `Você está prestes a EXCLUIR o caixa do dia:\n` +
+    `📅 ${dataFmt}\n\n` +
+    `Isso vai apagar:\n` +
+    `• O registro do caixa\n` +
+    `• ${qtdMov} movimentação(ões) vinculada(s)\n\n` +
+    `❌ Esta ação NÃO PODE SER DESFEITA!\n\n` +
+    `Deseja continuar?`
+  );
+  if (!ok1) return;
+
+  const palavra = prompt(
+    `Para confirmar, digite a palavra EXCLUIR (em maiúsculas):`,
+    ''
+  );
+  if (palavra !== 'EXCLUIR') {
+    alert('❌ Cancelado. A palavra digitada não confere.');
+    return;
+  }
+
+  try {
+    const r = await apiDelete('/caixa/' + id);
+    alert(
+      `✅ Caixa excluído com sucesso!\n\n` +
+      `📅 Data: ${r.removido.data}\n` +
+      `🗑️ ${r.removido.movimentacoes_removidas} movimentação(ões) removida(s)`
+    );
+    carregarHistoricoCaixa();
+  } catch (e) {
+    alert('❌ Erro ao excluir: ' + e.message);
+  }
 }
 
 function exportarCaixaHoje() {
@@ -1105,7 +1229,7 @@ async function excluirProduto(id) {
 }
 
 // ==========================================
-// ATENDIMENTOS UNIFICADOS
+// ATENDIMENTOS
 // ==========================================
 async function carregarAtendimentos() {
   atendimentosCache = await apiGet('/atendimentos');
@@ -1116,12 +1240,10 @@ function renderAtendimentos() {
   const el = document.getElementById('listaAtendimentos');
   const filtroData = document.getElementById('filtroData').value;
 
-  // Aplica filtros
   let lista = atendimentosCache;
   if (filtroData) lista = lista.filter(a => a.data === filtroData);
   if (filtroAtendAtual !== 'todos') lista = lista.filter(a => a.status === filtroAtendAtual);
 
-  // Contadores (sempre sobre o cache total, respeitando filtro de data)
   const baseData = filtroData ? atendimentosCache.filter(a => a.data === filtroData) : atendimentosCache;
   document.getElementById('contTodos').textContent = baseData.length;
   document.getElementById('contAgendado').textContent = baseData.filter(a => a.status === 'agendado').length;
@@ -1192,7 +1314,6 @@ function limparFiltroData() {
 }
 
 async function abrirNovoAtendimento() {
-  // Preenche select de clientes
   const lista = await apiGet('/clientes');
   document.getElementById('atendCliente').innerHTML =
     '<option value="">-- Selecione --</option>' +
@@ -1454,13 +1575,18 @@ async function carregarRelatorio() {
       const classeRank = rank <= 3 ? `rank-${rank}` : '';
       const pct = (p.percentual * 100).toFixed(0);
       const atendimentos = d.atendimentosPorProf[p.profissional_id] || [];
-      const detalhes = atendimentos.map(a => `
+      const LIMITE = 10;
+      const amostra = atendimentos.slice(0, LIMITE);
+      const detalhes = amostra.map(a => `
         <div class="prof-detalhe-item">
           <span class="data">${new Date(a.data + 'T00:00:00').toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' })} ${a.hora || ''}</span>
           <span class="desc">${a.cliente_nome} — ${a.servicos.substring(0, 25)}</span>
           <span class="valor">${formatarDinheiro(a.valor)}<span class="comissao">+${formatarDinheiro(a.comissao)}</span></span>
         </div>
       `).join('');
+      const extra = atendimentos.length > LIMITE
+        ? `<p style="text-align:center;font-size:12px;color:#888;margin-top:8px;">Mostrando ${LIMITE} de ${atendimentos.length} atendimentos</p>`
+        : '';
       return `
         <div class="prof-card ${classeRank}" onclick="this.classList.toggle('aberto')">
           <div class="prof-header">
@@ -1477,6 +1603,7 @@ async function carregarRelatorio() {
           <div class="prof-detalhes">
             <p style="font-size:12px;color:#888;margin-bottom:8px;">🎯 Ticket: <strong>${formatarDinheiro(p.ticket_medio)}</strong></p>
             ${detalhes}
+            ${extra}
           </div>
         </div>`;
     }).join('');
@@ -1528,13 +1655,9 @@ async function carregarEducacaoFinanceira() {
     varEconEl.textContent = (d.variacao.economia >= 0 ? '↑ ' : '↓ ') +
       formatarDinheiro(Math.abs(d.variacao.economia)) + ' vs mês anterior';
 
-    // ==========================================
-    // DONUT CORRIGIDO (agora funciona!)
-    // ==========================================
     const total = d.totalSaidas || 0;
-    const CIRC = 2 * Math.PI * 70; // ~439.82
+    const CIRC = 2 * Math.PI * 70;
 
-    // Zera tudo primeiro
     ['donutEssencial','donutDesejo','donutInvestimento','donutOutros'].forEach(id => {
       const el = document.getElementById(id);
       el.setAttribute('stroke-dasharray', `0 ${CIRC}`);
@@ -1557,7 +1680,6 @@ async function carregarEducacaoFinanceira() {
 
     document.getElementById('donutTotal').textContent = formatarDinheiro(total).replace(/\s/g, '');
 
-    // Legenda sempre atualizada
     document.getElementById('legEssencial').textContent = formatarDinheiro(d.porCategoria.Essencial);
     document.getElementById('legDesejo').textContent = formatarDinheiro(d.porCategoria.Desejo);
     document.getElementById('legInvestimento').textContent = formatarDinheiro(d.porCategoria.Investimento);
@@ -1668,12 +1790,18 @@ window.onload = async function() {
   document.getElementById('atendData').value = hoje();
   document.getElementById('atendHora').value = horaAgora();
   document.getElementById('filtroData').value = '';
+  carregarVersao();
   try {
     const r = await fetch(API + '/auth/me', { credentials: 'include' });
     if (r.ok) { usuarioLogado = await r.json(); mostrarApp(); }
     else mostrarLogin();
   } catch(e) { mostrarLogin(); }
 };
+
+// Service Worker (offline PWA)
+if ('serviceWorker' in navigator && location.protocol !== 'file:') {
+  navigator.serviceWorker.register('/sw.js').catch(() => {});
+}
 </script>
 </body>
 </html>

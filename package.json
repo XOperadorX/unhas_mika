@@ -1,9 +1,26 @@
 {
   "name": "gerenciador-unhas-mikaela",
-  "version": "1.0.0",
+  "version": "1.1.0",
+  "description": "Sistema de gestão profissional para salão de unhas com painel admin, loja online e PWA offline",
   "main": "server.js",
+  "author": "Mikaela",
+  "license": "MIT",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "gestao",
+    "salao",
+    "unhas",
+    "manicure",
+    "pwa",
+    "offline",
+    "sqlite",
+    "express"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
